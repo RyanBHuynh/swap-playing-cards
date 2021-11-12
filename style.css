@@ -1,0 +1,64 @@
+/* Card formatting */
+
+.item{
+    margin-top: 4px;
+    text-align: center;
+    background: #f2f2f2;
+    height: 200px !important;
+}
+
+img {
+    max-width: 100%;
+}
+
+img.card {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    -ms-box-shadow: none;
+    width: 100px;
+}
+
+.cards {
+    margin: auto;
+    text-align: center;
+    padding: 200px 0;
+}
+
+.flexbox-card-container {
+    display: flex;
+    /*
+    position: relative;
+    margin: 0 auto;
+    text-align: center; 
+    */
+}
+
+.flex-child {
+    flex: 1;
+    flex-grow: 0;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    border: 2px solid yellow;
+}
+.flex-child:first-child {
+    margin-right: 20px;
+}
+
+#card1,#card2 {
+    position: relative;
+}
+
+/* Other formatting */
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+    margin: 0 auto;
+    left: 50%;
+}
+
