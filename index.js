@@ -1,4 +1,4 @@
-let card1 = document.querySelector('#cardID');
+let card1 = document.querySelector('#AC');
 let rect = card1.getBoundingClientRect();
 
 //cardID dimensions
@@ -34,24 +34,41 @@ function linedraw(ax,ay,bx,by)
 //linedraw(card1X,card1Y,1000,1000);
 //console.log("after linedraw");
 
-
 //Move card animation
 function moveCardLeft() {
     let id = null;
-    const cards = document.getElementById("card1");
+    const card1 = document.getElementById('AC');
+    const card2 = document.getElementById('QH');
     
+    let cardSize = document.querySelector("img.card").style.width;
+    console.log("cardSize = ",cardSize);
+
     let pos = 0;
 
     clearInterval(id);
-    id = setInterval(frame,5);
+    id = setInterval(moveApart,3);
 
-    function frame () {
-        console.log(pos);
+    function moveApart () {
         if(pos == 100)
             clearInterval(id);
         else {
             pos++;
-            cards.style.top = pos + 'px';
+            card1.style.top = pos + 'px';
+            card2.style.top = -pos + 'px';
         }
     }
+
+    clearInterval(id);
+    id = setInterval(moveCardsOver,3);
+    pos = 0;
+    function moveCardsOver() {
+        if(pos == 100 + 4) //Length in pixels to move over (card width + gap)
+            clearInterval(id);
+        else {
+            pos++;
+            card1.style.left = pos + 'px';
+            card2.style.left = -pos + 'px';
+        }
+    }
+
 }
