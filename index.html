@@ -14,12 +14,18 @@
     <h1>Swap Cards</h1>
     <div class='center'>
         <div class='cards'>
+            <img id='AS' class='card' src='cards/AS.svg'>
             <img id='AC' class='card' src='cards/AC.svg'> 
             <img id='QH' class='card' src='cards/QH.svg'>
-            <!--        <img id='10C' class='card' src='cards/10C.svg'> -->
+            <img id='10C' class='card' src='cards/10C.svg'>
         </div>
-        <button type="button" onclick="moveCardLeft()">Click to swap cards</button>
+
+        Enter left card: <input type='text' id='leftInput'>
+        Enter right card: <input type='text' id='rightInput'>
+        <button type="button" onclick="swapCards()">Click to swap cards</button>
+
     </div>
+    
     
     <script src="index.js"></script>
     <script src="cards.js"></script>

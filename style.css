@@ -27,10 +27,14 @@ img.card {
     margin: auto;
     text-align: center;
     padding: 200px 0;
+    
 }
 
+.card {
+    position: relative; 
+}
 
-#AC,#QH {
+input {
     position: relative;
 }
 
