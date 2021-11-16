@@ -1,5 +1,25 @@
+//JavaScript file for the swap-playing-cards website
+//Hosted on GitHub Pages
+//Accessible at https://ryanbhuynh.github.io/swap-playing-cards
 
+//Function definitions
+//Adds cards onto the screen from the cards selected in cardArray
+//Size represents the number of cards to display on the screen
+function addCards(cardArray,size) {
+    let shuffledCards = shuffleArray(cardArray);
+    
+    //Loop through cardArray
+    for(let i = 0; i < size; i++) {
+        //Select image file
+        let imgCard = document.createElement("img");
+        imgCard.src = "cards/" + shuffledCards[i] + ".svg";
+        imgCard.id = shuffledCards[i];
+        imgCard.className = 'card';
 
+        let cardDiv = document.getElementById('cards');
+        cardDiv.append(imgCard);
+    }
+}
 
 //Move card animation
 function swapCards() {
@@ -7,6 +27,7 @@ function swapCards() {
     let rightInput = document.getElementById('rightInput');
     let button = document.getElementById('swapButton');
 
+    //Disable input after one swap
     leftInput.disabled = true;
     rightInput.disabled = true;
     button.disabled = true;
@@ -23,26 +44,13 @@ function swapCards() {
 
     let pos = 0;
 
-    clearInterval(id);
-    /*
-    id = setInterval(moveApart,2);
-
-    function moveApart () {
-        if(pos == 100)
-            clearInterval(id);
-        else {
-            pos++;
-            card1.style.top = pos + 'px';
-            card2.style.top = -pos + 'px';
-        }
-    }
-    */
 
     clearInterval(id);
     id = setInterval(moveCardsOver,1);
     pos = 0;
+
     function moveCardsOver() {
-        if(pos == 100 + 4) //Length in pixels to move over (card width + gap)
+        if(pos == 100) //Length in pixels to move over (card width + gap)
             clearInterval(id);
         else {
             pos++;
@@ -53,37 +61,46 @@ function swapCards() {
 
 }
 
-/*
-let card1 = document.querySelector('#AC');
-let rect = card1.getBoundingClientRect();
-
-//cardID dimensions
-console.log("rect.left: ",rect.left);
-console.log("rect.right: ",rect.right);
-console.log("rect.top: ",rect.top);
-console.log("rect.bottom: ",rect.bottom);
-
-//Get x and y values for the card
-let card1X = window.scrollX + rect.left;
-let card1Y = window.scrollY + rect.right;
-
-console.log("card1X: ",card1X);
-console.log("card1Y: ",card1Y);
-
-function linedraw(ax,ay,bx,by)
-{
-    if(ay>by)
-    {
-        bx=ax+bx;  
-        ax=bx-ax;
-        bx=bx-ax;
-        by=ay+by;  
-        ay=by-ay;  
-        by=by-ay;
+//Shuffles an array and returns the shuffled version
+//Fisher-Yates Shuffle
+function shuffleArray(array) {
+    for(let i = array.length - 1; i >= 0; i--) {
+        let randomIndex = Math.floor(Math.random() * array.length);
+        console.log("randomIndex =",randomIndex);
+        let temp = array[i];
+        array[i] = array[randomIndex];
+        array[randomIndex] = temp;
     }
-    var calc=Math.atan((ay-by)/(bx-ax));
-    calc=calc*180/Math.PI;
-    var length=Math.sqrt((ax-bx)*(ax-bx)+(ay-by)*(ay-by));
-    document.body.innerHTML += "<div id='line' style='height:" + length + "px;width:1px;background-color:black;position:absolute;top:" + (ay) + "px;left:" + (ax) + "px;transform:rotate(" + calc + "deg);-ms-transform:rotate(" + calc + "deg);transform-origin:0% 0%;-moz-transform:rotate(" + calc + "deg);-moz-transform-origin:0% 0%;-webkit-transform:rotate(" + calc  + "deg);-webkit-transform-origin:0% 0%;-o-transform:rotate(" + calc + "deg);-o-transform-origin:0% 0%;'></div>"
+
+    for(let i = 0;i < array.length; i++) {
+        console.log(array[i]);
+    }
+    return array;
 }
-*/
+
+//Returns a sorted array of a 52 card deck
+//Each card is its rank followed by its suit
+//For example, a King of Hearts is represented as 'KH' in the array
+//No jokers are included
+//Sort order: Clubs, Spades, Diamonds, Hearts
+function create52CardDeck() {
+    let rank = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+    let suit = ['C','S','D','H'];
+    let sortedCards = []
+
+    for(i in rank) {
+        for(j in suit) {
+            sortedCards.push(rank[i] + suit[j]);
+        }
+    }
+    console.log(sortedCards);
+    return sortedCards;
+}
+
+//Main function that gets called when the website loads
+function main() {
+    let cardArray = create52CardDeck();
+    addCards(cardArray,14); //Add a specified number of cards to the screen
+}
+
+main();
