@@ -3,6 +3,14 @@
 
 //Move card animation
 function swapCards() {
+    let leftInput = document.getElementById('leftInput');
+    let rightInput = document.getElementById('rightInput');
+    let button = document.getElementById('swapButton');
+
+    leftInput.disabled = true;
+    rightInput.disabled = true;
+    button.disabled = true;
+
     let leftText = document.getElementById('leftInput').value;
     let rightText = document.getElementById('rightInput').value;
 
