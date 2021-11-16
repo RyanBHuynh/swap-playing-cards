@@ -32,19 +32,15 @@ function swapCards() {
     rightInput.disabled = true;
     button.disabled = true;
 
-    let leftText = document.getElementById('leftInput').value;
-    let rightText = document.getElementById('rightInput').value;
+    //Get text input and make it all uppercase
+    let leftText = document.getElementById('leftInput').value.toUpperCase();
+    let rightText = document.getElementById('rightInput').value.toUpperCase();
 
     let id = null;
     const card1 = document.getElementById(leftText);
     const card2 = document.getElementById(rightText);
     
-    let cardSize = document.querySelector("img.card").style.width;
-    console.log("cardSize = ",cardSize);
-
     let pos = 0;
-
-
     clearInterval(id);
     id = setInterval(moveCardsOver,1);
     pos = 0;
@@ -66,14 +62,9 @@ function swapCards() {
 function shuffleArray(array) {
     for(let i = array.length - 1; i >= 0; i--) {
         let randomIndex = Math.floor(Math.random() * array.length);
-        console.log("randomIndex =",randomIndex);
         let temp = array[i];
         array[i] = array[randomIndex];
         array[randomIndex] = temp;
-    }
-
-    for(let i = 0;i < array.length; i++) {
-        console.log(array[i]);
     }
     return array;
 }
