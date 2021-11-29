@@ -6,7 +6,8 @@
 //Adds cards onto the screen from the cards selected in cardArray
 //Size represents the number of cards to display on the screen
 function addCards(cardArray,size) {
-    let shuffledCards = shuffleArray(cardArray);
+    //let shuffledCards = shuffleArray(cardArray);
+    let shuffledCards = cardArray;
     
     //Loop through cardArray
     for(let i = 0; i < size; i++) {
@@ -21,8 +22,9 @@ function addCards(cardArray,size) {
     }
 }
 
-//Move card animation
-function swapCards() {
+//Gets two cards from the user input
+//Returns an array containing the cards to swap
+function getCards() {
     let leftInput = document.getElementById('leftInput');
     let rightInput = document.getElementById('rightInput');
     let button = document.getElementById('swapButton');
@@ -36,6 +38,21 @@ function swapCards() {
     let leftText = document.getElementById('leftInput').value.toUpperCase();
     let rightText = document.getElementById('rightInput').value.toUpperCase();
 
+    return [leftText,rightText];
+}
+
+//Move card animation
+//Gets two cards to swap from an array of size 2 called cardsToSwap
+//cardsToSwap[0] has the left card and cardsToSwap[1] has the right card
+function swapCards(cardsToSwap) {
+    //Get left cards and right card
+    let leftText = cardsToSwap[0];
+    let rightText = cardsToSwap[1];
+
+    //Do nothing if either location is empty
+    if(leftText == '' || rightText == '')
+        return;
+    
     let id = null;
     const card1 = document.getElementById(leftText);
     const card2 = document.getElementById(rightText);
@@ -54,7 +71,12 @@ function swapCards() {
             card2.style.left = -pos + 'px';
         }
     }
+}
 
+//Runs when the user clicks the swap button
+function swapButtonOnClick() {
+    let result = getCards();
+    swapCards(result);
 }
 
 //Shuffles an array and returns the shuffled version
