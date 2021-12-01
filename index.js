@@ -2,22 +2,25 @@
 //Hosted on GitHub Pages
 //Accessible at https://ryanbhuynh.github.io/swap-playing-cards
 
+//Global variables
+let cardArray = create52CardDeck(); //Declared globally to make editing easier
+let cardArraySize = 14;
+
 //Function definitions
-//Adds cards onto the screen from the cards selected in cardArray
+//Adds cards onto the screen from the cards selected in arrayOfCards
 //Size represents the number of cards to display on the screen
-function addCards(cardArray,size) {
-    //let shuffledCards = shuffleArray(cardArray);
-    let shuffledCards = cardArray;
+function displayCards(arrayOfCards,size) {
+    let cardDiv = document.getElementById('cards');
+    cardDiv.innerHTML = "";
     
-    //Loop through cardArray
+    //Loop through arrayOfCards
     for(let i = 0; i < size; i++) {
         //Select image file
         let imgCard = document.createElement("img");
-        imgCard.src = "cards/" + shuffledCards[i] + ".svg";
-        imgCard.id = shuffledCards[i];
+        imgCard.src = "cards/" + arrayOfCards[i] + ".svg";
+        imgCard.id = arrayOfCards[i];
         imgCard.className = 'card';
 
-        let cardDiv = document.getElementById('cards');
         cardDiv.append(imgCard);
     }
 }
@@ -28,12 +31,12 @@ function getCards() {
     let leftInput = document.getElementById('leftInput');
     let rightInput = document.getElementById('rightInput');
     let button = document.getElementById('swapButton');
-
+/*
     //Disable input after one swap
     leftInput.disabled = true;
     rightInput.disabled = true;
     button.disabled = true;
-
+*/
     //Get text input and make it all uppercase
     let leftText = document.getElementById('leftInput').value.toUpperCase();
     let rightText = document.getElementById('rightInput').value.toUpperCase();
@@ -73,10 +76,35 @@ function swapCards(cardsToSwap) {
     }
 }
 
+//Edits the array after two cards are swapped
+//swappedCards is an array with two elements: [leftCard,rightCard]
+function editArrayAfterSwap(swappedCards) {
+    let leftCard = swappedCards[0];
+    let rightCard = swappedCards[1];
+    let leftFound = false; //Marks whether the left card has been found yet
+    let i = 0; //Array index 
+
+    //Find the location of leftCard
+    //We assume rightCard is right after leftCard
+    while(leftFound == false && i < cardArray.length - 1) {
+        if(cardArray[0] == leftCard)
+            leftFound = true;
+        i++;
+    }
+
+    //Edit array to reflect swapped cards
+    swappedCards[i] = rightCard;
+    swappedCards[i+1] = leftCard;
+}
+
 //Runs when the user clicks the swap button
 function swapButtonOnClick() {
     let result = getCards();
     swapCards(result);
+    editArrayAfterSwap(result); //Edit array to reflect swap
+    //displayCards(cardArray,cardArraySize); //Display new array on the screen
+    console.log(cardArray);
+
 }
 
 //Shuffles an array and returns the shuffled version
@@ -106,14 +134,12 @@ function create52CardDeck() {
             sortedCards.push(rank[i] + suit[j]);
         }
     }
-    console.log(sortedCards);
     return sortedCards;
 }
 
 //Main function that gets called when the website loads
 function main() {
-    let cardArray = create52CardDeck();
-    addCards(cardArray,14); //Add a specified number of cards to the screen
+    displayCards(cardArray,cardArraySize); //Add a specified number of cards to the screen
 }
 
 main();
