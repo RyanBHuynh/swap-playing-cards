@@ -9,7 +9,7 @@ let cardArraySize = 14;
 //Function definitions
 //Adds cards onto the screen from the cards selected in arrayOfCards
 //Size represents the number of cards to display on the screen
-function displayCards(arrayOfCards,size) {
+async function displayCards(arrayOfCards,size) {
     let cardDiv = document.getElementById('cards');
     cardDiv.innerHTML = "";
     
@@ -27,7 +27,7 @@ function displayCards(arrayOfCards,size) {
 
 //Gets two cards from the user input
 //Returns an array containing the cards to swap
-function getCards() {
+function getCardsToSwap() {
     let leftInput = document.getElementById('leftInput');
     let rightInput = document.getElementById('rightInput');
     let button = document.getElementById('swapButton');
@@ -46,8 +46,8 @@ function getCards() {
 
 //Move card animation
 //Gets two cards to swap from an array of size 2 called cardsToSwap
-//cardsToSwap[0] has the left card and cardsToSwap[1] has the right card
-function swapCards(cardsToSwap) {
+//cardsToSwap is an array with two elements: [leftCard,rightCard]
+async function swapCards(cardsToSwap) {
     //Get left cards and right card
     let leftText = cardsToSwap[0];
     let rightText = cardsToSwap[1];
@@ -74,6 +74,7 @@ function swapCards(cardsToSwap) {
             card2.style.left = -pos + 'px';
         }
     }
+    editArrayAfterSwap(cardsToSwap); //Edit array to reflect swap
 }
 
 //Edits the array after two cards are swapped
@@ -87,24 +88,29 @@ function editArrayAfterSwap(swappedCards) {
     //Find the location of leftCard
     //We assume rightCard is right after leftCard
     while(leftFound == false && i < cardArray.length - 1) {
-        if(cardArray[0] == leftCard)
+        if(cardArray[i] == leftCard)
             leftFound = true;
-        i++;
+        else
+            i++;
     }
 
     //Edit array to reflect swapped cards
-    swappedCards[i] = rightCard;
-    swappedCards[i+1] = leftCard;
+    cardArray[i] = rightCard;
+    cardArray[i+1] = leftCard;
+
+    console.log("cardArray[",i,"] =",cardArray[i]);
+    console.log("cardArray[",i+1,"] =",cardArray[i+1]);
 }
 
 //Runs when the user clicks the swap button
 function swapButtonOnClick() {
-    let result = getCards();
-    swapCards(result);
-    editArrayAfterSwap(result); //Edit array to reflect swap
-    //displayCards(cardArray,cardArraySize); //Display new array on the screen
+    let result = getCardsToSwap();
+    async function displayCardsAfterSwap(array,size) { //Display new array on the screen
+        await swapCards(result);
+        displayCards(cardArray,cardArraySize);
+    }; 
+    displayCardsAfterSwap(cardArray,cardArraySize);
     console.log(cardArray);
-
 }
 
 //Shuffles an array and returns the shuffled version
