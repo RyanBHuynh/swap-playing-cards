@@ -4,6 +4,7 @@
 
 //Global variables
 let cardArray = create52CardDeck(); //Declared globally to make editing easier
+const cardSet = new Set(cardArray); //This set keeps track of all cards in the deck
 let cardArraySize = 14;
 
 //Function definitions
@@ -19,29 +20,50 @@ async function displayCards(arrayOfCards,size) {
         let imgCard = document.createElement("img");
         imgCard.src = "cards/" + arrayOfCards[i] + ".svg";
         imgCard.id = arrayOfCards[i];
-        imgCard.className = 'card';
+        imgCard.className = 'card'
 
         cardDiv.append(imgCard);
     }
 }
 
+//Checks if two cards are swappable
+//Used as a subroutine in getCardsToSwap 
+function checkCardQuery(leftText,rightText) {
+    //Check if the cards are in the current deck
+    if(!cardSet.has(leftText) || !cardSet.has(rightText)) {
+        console.log("Error in checkCardQuery: the left card and/or the right card is not a playing card");
+        return false;
+    }
+         
+    //Check if the cards are next to each other
+    for(let i = 0; i < cardArray.length - 1; i++) {
+        if(cardArray[i] == leftText) {
+            if(cardArray[i + 1] != rightText) {
+                console.log("Error in checkCardQuery: the cards are not next to each other or they are in the wrong spot");
+                return false;
+            }
+        }          
+    }  
+    return true;
+}
+
 //Gets two cards from the user input
 //Returns an array containing the cards to swap
+//O(n) time
 function getCardsToSwap() {
     let leftInput = document.getElementById('leftInput');
     let rightInput = document.getElementById('rightInput');
     let button = document.getElementById('swapButton');
-/*
-    //Disable input after one swap
-    leftInput.disabled = true;
-    rightInput.disabled = true;
-    button.disabled = true;
-*/
+
     //Get text input and make it all uppercase
     let leftText = document.getElementById('leftInput').value.toUpperCase();
     let rightText = document.getElementById('rightInput').value.toUpperCase();
 
-    return [leftText,rightText];
+    //Check if the input is valid
+    if(checkCardQuery(leftText,rightText) == true)
+        return [leftText,rightText];
+    else
+        return ['','']; //Return empty query if cards are invalid
 }
 
 //Move card animation
@@ -65,6 +87,7 @@ async function swapCards(cardsToSwap) {
     id = setInterval(moveCardsOver,1);
     pos = 0;
 
+    //Function that physically moves the cards over
     function moveCardsOver() {
         if(pos == 100) //Length in pixels to move over (card width + gap)
             clearInterval(id);
@@ -74,7 +97,6 @@ async function swapCards(cardsToSwap) {
             card2.style.left = -pos + 'px';
         }
     }
-    editArrayAfterSwap(cardsToSwap); //Edit array to reflect swap
 }
 
 //Edits the array after two cards are swapped
@@ -82,6 +104,11 @@ async function swapCards(cardsToSwap) {
 function editArrayAfterSwap(swappedCards) {
     let leftCard = swappedCards[0];
     let rightCard = swappedCards[1];
+
+    //If empty strings are stored, then do nothing
+    if(leftCard == '' || rightCard == '')
+        return;
+
     let leftFound = false; //Marks whether the left card has been found yet
     let i = 0; //Array index 
 
@@ -107,6 +134,7 @@ function swapButtonOnClick() {
     let result = getCardsToSwap();
     async function displayCardsAfterSwap(array,size) { //Display new array on the screen
         await swapCards(result);
+        editArrayAfterSwap(result); //Edit array to reflect swap
         displayCards(cardArray,cardArraySize);
     }; 
     displayCardsAfterSwap(cardArray,cardArraySize);
