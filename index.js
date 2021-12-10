@@ -1,16 +1,19 @@
-//JavaScript file for the swap-playing-cards website
-//Hosted on GitHub Pages
-//Accessible at https://ryanbhuynh.github.io/swap-playing-cards
+
+/* JavaScript file for the swap-playing-cards website
+Hosted on GitHub Pages
+Accessible at https://ryanbhuynh.github.io/swap-playing-cards */
 
 //Global variables
-let cardArray = create52CardDeck(); //Declared globally to make editing easier
-const cardSet = new Set(cardArray); //This set keeps track of all cards in the deck
+let fullDeck = shuffleArray(create52CardDeck());
 let cardArraySize = 14;
+let cardArray = fullDeck.slice(0,cardArraySize); //Declared globally to make editing easier
+const cardSet = new Set(cardArray); //This set keeps track of all cards in the deck
 
 //Function definitions
+
 //Adds cards onto the screen from the cards selected in arrayOfCards
 //Size represents the number of cards to display on the screen
-async function displayCards(arrayOfCards,size) {
+function displayCards(arrayOfCards,size) {
     let cardDiv = document.getElementById('cards');
     cardDiv.innerHTML = "";
     
@@ -66,10 +69,12 @@ function getCardsToSwap() {
         return ['','']; //Return empty query if cards are invalid
 }
 
-//Move card animation
-//Gets two cards to swap from an array of size 2 called cardsToSwap
-//cardsToSwap is an array with two elements: [leftCard,rightCard]
-async function swapCards(cardsToSwap) {
+/*
+Move card animation
+Gets two cards to swap from an array of size 2 called cardsToSwap
+cardsToSwap is an array with two elements: [leftCard,rightCard]
+*/
+function swapCards(cardsToSwap) {
     //Get left cards and right card
     let leftText = cardsToSwap[0];
     let rightText = cardsToSwap[1];
@@ -84,8 +89,7 @@ async function swapCards(cardsToSwap) {
     
     let pos = 0;
     clearInterval(id);
-    id = setInterval(moveCardsOver,1);
-    pos = 0;
+    id = setInterval(moveCardsOver,5);
 
     //Function that physically moves the cards over
     function moveCardsOver() {
@@ -132,8 +136,8 @@ function editArrayAfterSwap(swappedCards) {
 //Runs when the user clicks the swap button
 function swapButtonOnClick() {
     let result = getCardsToSwap();
-    async function displayCardsAfterSwap(array,size) { //Display new array on the screen
-        await swapCards(result);
+    function displayCardsAfterSwap(array,size) { //Display new array on the screen
+        swapCards(result);
         editArrayAfterSwap(result); //Edit array to reflect swap
         displayCards(cardArray,cardArraySize);
     }; 
@@ -153,16 +157,19 @@ function shuffleArray(array) {
     return array;
 }
 
-//Returns a sorted array of a 52 card deck
-//Each card is its rank followed by its suit
-//For example, a King of Hearts is represented as 'KH' in the array
-//No jokers are included
-//Sort order: Clubs, Spades, Diamonds, Hearts
+/*
+Returns a sorted array of a 52 card deck
+Each card is its rank followed by its suit
+For example, a King of Hearts is represented as 'KH' in the array
+No jokers are included
+Sort order: Clubs, Spades, Diamonds, Hearts
+*/
 function create52CardDeck() {
     let rank = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
     let suit = ['C','S','D','H'];
     let sortedCards = []
 
+    //Insert cards in sorted order into sortedCards
     for(i in rank) {
         for(j in suit) {
             sortedCards.push(rank[i] + suit[j]);
