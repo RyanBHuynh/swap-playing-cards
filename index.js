@@ -89,10 +89,12 @@ function swapCards(cardsToSwap) {
     
     let pos = 0;
     clearInterval(id);
-    id = setInterval(moveCardsOver,5);
+    console.log("BEFORE setInterval");
+    id = setInterval(moveCardsOver,50);
 
     //Function that physically moves the cards over
     function moveCardsOver() {
+        console.log(pos);
         if(pos == 100) //Length in pixels to move over (card width + gap)
             clearInterval(id);
         else {
@@ -101,6 +103,7 @@ function swapCards(cardsToSwap) {
             card2.style.left = -pos + 'px';
         }
     }
+    console.log("AFTER moveCardsOver");
 }
 
 //Edits the array after two cards are swapped
@@ -109,15 +112,15 @@ function editArrayAfterSwap(swappedCards) {
     let leftCard = swappedCards[0];
     let rightCard = swappedCards[1];
 
-    //If empty strings are stored, then do nothing
+//If empty strings are stored, then do nothing
     if(leftCard == '' || rightCard == '')
         return;
 
     let leftFound = false; //Marks whether the left card has been found yet
     let i = 0; //Array index 
 
-    //Find the location of leftCard
-    //We assume rightCard is right after leftCard
+//Find the location of leftCard
+//We assume rightCard is right after leftCard
     while(leftFound == false && i < cardArray.length - 1) {
         if(cardArray[i] == leftCard)
             leftFound = true;
@@ -125,7 +128,7 @@ function editArrayAfterSwap(swappedCards) {
             i++;
     }
 
-    //Edit array to reflect swapped cards
+//Edit array to reflect swapped cards
     cardArray[i] = rightCard;
     cardArray[i+1] = leftCard;
 
@@ -136,8 +139,10 @@ function editArrayAfterSwap(swappedCards) {
 //Runs when the user clicks the swap button
 function swapButtonOnClick() {
     let result = getCardsToSwap();
+    swapCards(result);
     function displayCardsAfterSwap(array,size) { //Display new array on the screen
-        swapCards(result);
+        
+        console.log("AFTER swapCards");
         editArrayAfterSwap(result); //Edit array to reflect swap
         displayCards(cardArray,cardArraySize);
     }; 
@@ -165,11 +170,12 @@ No jokers are included
 Sort order: Clubs, Spades, Diamonds, Hearts
 */
 function create52CardDeck() {
-    let rank = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-    let suit = ['C','S','D','H'];
+//Initialize variables
+    const rank = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+    const suit = ['C','S','D','H'];
     let sortedCards = []
 
-    //Insert cards in sorted order into sortedCards
+//Insert cards in sorted order into sortedCards
     for(i in rank) {
         for(j in suit) {
             sortedCards.push(rank[i] + suit[j]);
