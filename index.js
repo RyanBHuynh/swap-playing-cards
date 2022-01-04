@@ -4,7 +4,7 @@ Hosted on GitHub Pages
 Accessible at https://ryanbhuynh.github.io/swap-playing-cards */
 
 //Global variables
-let fullDeck = shuffleArray(create52CardDeck());
+let fullDeck = create52CardDeck();
 let cardArraySize = 14;
 let cardArray = fullDeck.slice(0,cardArraySize); //Declared globally to make editing easier
 const cardSet = new Set(cardArray); //This set keeps track of all cards in the deck
@@ -24,7 +24,7 @@ function displayCards(arrayOfCards,size) {
         imgCard.src = "cards/" + arrayOfCards[i] + ".svg";
         imgCard.id = arrayOfCards[i];
         imgCard.className = 'card'
-
+        
         cardDiv.append(imgCard);
     }
 }
@@ -86,12 +86,8 @@ function swapCards(cardsToSwap) {
     let id = null;
     const card1 = document.getElementById(leftText);
     const card2 = document.getElementById(rightText);
-    
+/*    
     let pos = 0;
-    clearInterval(id);
-    console.log("BEFORE setInterval");
-    id = setInterval(moveCardsOver,50);
-
     //Function that physically moves the cards over
     function moveCardsOver() {
         console.log(pos);
@@ -103,7 +99,20 @@ function swapCards(cardsToSwap) {
             card2.style.left = -pos + 'px';
         }
     }
+
+    clearInterval(id);
+    console.log("BEFORE setInterval");
+
+    function setIntervalAndExecute(fn,t) {
+        fn();
+        return setInterval(fn,t);
+    }
+
+    //id = setInterval(moveCardsOver,50);
+    id = setIntervalAndExecute(moveCardsOver,50);
+
     console.log("AFTER moveCardsOver");
+*/
 }
 
 //Edits the array after two cards are swapped
@@ -141,8 +150,6 @@ function swapButtonOnClick() {
     let result = getCardsToSwap();
     swapCards(result);
     function displayCardsAfterSwap(array,size) { //Display new array on the screen
-        
-        console.log("AFTER swapCards");
         editArrayAfterSwap(result); //Edit array to reflect swap
         displayCards(cardArray,cardArraySize);
     }; 
@@ -187,6 +194,8 @@ function create52CardDeck() {
 //Main function that gets called when the website loads
 function main() {
     displayCards(cardArray,cardArraySize); //Add a specified number of cards to the screen
+    document.getElementById('5S').classList.add("move-right");
+    document.getElementById('5C').classList.add("move-left");
 }
 
 main();
