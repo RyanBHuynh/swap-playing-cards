@@ -7,6 +7,7 @@ Accessible at https://ryanbhuynh.github.io/swap-playing-cards */
 let fullDeck = create52CardDeck();
 let cardArraySize = 14;
 let cardArray = fullDeck.slice(0,cardArraySize); //Declared globally to make editing easier
+const swapAnimationTime = 1.5; //Time of swap animation in seconds
 const cardSet = new Set(cardArray); //This set keeps track of all cards in the deck
 
 //Function definitions
@@ -86,6 +87,28 @@ function swapCards(cardsToSwap) {
     let id = null;
     const card1 = document.getElementById(leftText);
     const card2 = document.getElementById(rightText);
+
+    //Add classes to cards to run CSS animation
+    card1.classList.add("move-left");
+    card2.classList.add("move-right");
+
+    //Set animation time
+    card1.style["animation-duration"] = swapAnimationTime + 's';
+    card2.style["animation-duration"] = swapAnimationTime + 's';
+
+    let currentPercent = 0;
+    window.setTimeout(() => {
+        //Remove CSS animation class
+        card1.classList.remove("move-left");
+        card2.classList.remove("move-right");
+
+        //Edit array and display new cards
+        editArrayAfterSwap(cardsToSwap); 
+        displayCards(cardArray,cardArraySize); 
+      }, (swapAnimationTime * 1000) + 2);
+
+    console.log("currentPercent =",currentPercent);
+    
 /*    
     let pos = 0;
     //Function that physically moves the cards over
@@ -148,12 +171,7 @@ function editArrayAfterSwap(swappedCards) {
 //Runs when the user clicks the swap button
 function swapButtonOnClick() {
     let result = getCardsToSwap();
-    swapCards(result);
-    function displayCardsAfterSwap(array,size) { //Display new array on the screen
-        editArrayAfterSwap(result); //Edit array to reflect swap
-        displayCards(cardArray,cardArraySize);
-    }; 
-    displayCardsAfterSwap(cardArray,cardArraySize);
+    swapCards(result); //Runs CSS animation
     console.log(cardArray);
 }
 
@@ -194,8 +212,6 @@ function create52CardDeck() {
 //Main function that gets called when the website loads
 function main() {
     displayCards(cardArray,cardArraySize); //Add a specified number of cards to the screen
-    document.getElementById('5S').classList.add("move-right");
-    document.getElementById('5C').classList.add("move-left");
 }
 
 main();
