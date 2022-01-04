@@ -4,7 +4,7 @@ Hosted on GitHub Pages
 Accessible at https://ryanbhuynh.github.io/swap-playing-cards */
 
 //Global variables
-let fullDeck = create52CardDeck();
+let fullDeck = shuffleArray(create52CardDeck());
 let cardArraySize = 14;
 let cardArray = fullDeck.slice(0,cardArraySize); //Declared globally to make editing easier
 const swapAnimationTime = 1.5; //Time of swap animation in seconds
