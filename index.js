@@ -35,7 +35,7 @@ function displayCards(arrayOfCards,size) {
 function checkCardQuery(leftText,rightText) {
     //Check if the cards are in the current deck
     if(!cardSet.has(leftText) || !cardSet.has(rightText)) {
-        console.log("Error in checkCardQuery: the left card and/or the right card is not a playing card");
+        alert("Error: the left card and/or the right card is not a valid playing card");
         return false;
     }
          
@@ -43,7 +43,7 @@ function checkCardQuery(leftText,rightText) {
     for(let i = 0; i < cardArray.length - 1; i++) {
         if(cardArray[i] == leftText) {
             if(cardArray[i + 1] != rightText) {
-                console.log("Error in checkCardQuery: the cards are not next to each other or they are in the wrong spot");
+                alert("Error: the cards are not next to each other or they are in the wrong spot");
                 return false;
             }
         }          
