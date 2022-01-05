@@ -7,10 +7,18 @@ Accessible at https://ryanbhuynh.github.io/swap-playing-cards */
 let fullDeck = shuffleArray(create52CardDeck());
 let cardArraySize = 14;
 let cardArray = fullDeck.slice(0,cardArraySize); //Declared globally to make editing easier
-const swapAnimationTime = 1.5; //Time of swap animation in seconds
+let swapAnimationTime = 1500; //Time of swap animation in milliseconds
 const cardSet = new Set(cardArray); //This set keeps track of all cards in the deck
 
 //Function definitions
+
+//Animation functions
+let swapSpeedElement = document.querySelector("#speed_input");
+
+//Add an event listener to get the user-selected animation speed
+swapSpeedElement.addEventListener('input', function() {
+    swapAnimationTime = parseInt(swapSpeedElement.value);
+});
 
 //Adds cards onto the screen from the cards selected in arrayOfCards
 //Size represents the number of cards to display on the screen
@@ -93,8 +101,8 @@ function swapCards(cardsToSwap) {
     card2.classList.add("move-right");
 
     //Set animation time
-    card1.style["animation-duration"] = swapAnimationTime + 's';
-    card2.style["animation-duration"] = swapAnimationTime + 's';
+    card1.style["animation-duration"] = (swapAnimationTime / 1000) + 's';
+    card2.style["animation-duration"] = (swapAnimationTime / 1000) + 's';
 
     let currentPercent = 0;
     window.setTimeout(() => {
@@ -105,37 +113,9 @@ function swapCards(cardsToSwap) {
         //Edit array and display new cards
         editArrayAfterSwap(cardsToSwap); 
         displayCards(cardArray,cardArraySize); 
-      }, (swapAnimationTime * 1000) + 2);
+      }, swapAnimationTime + 2);
 
     console.log("currentPercent =",currentPercent);
-    
-/*    
-    let pos = 0;
-    //Function that physically moves the cards over
-    function moveCardsOver() {
-        console.log(pos);
-        if(pos == 100) //Length in pixels to move over (card width + gap)
-            clearInterval(id);
-        else {
-            pos++;
-            card1.style.left = pos + 'px';
-            card2.style.left = -pos + 'px';
-        }
-    }
-
-    clearInterval(id);
-    console.log("BEFORE setInterval");
-
-    function setIntervalAndExecute(fn,t) {
-        fn();
-        return setInterval(fn,t);
-    }
-
-    //id = setInterval(moveCardsOver,50);
-    id = setIntervalAndExecute(moveCardsOver,50);
-
-    console.log("AFTER moveCardsOver");
-*/
 }
 
 //Edits the array after two cards are swapped
