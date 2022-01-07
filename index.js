@@ -25,7 +25,8 @@ arraySizeElement.addEventListener('input', function() {
 
 //Add an event listener to get the user-selected animation speed
 swapSpeedElement.addEventListener('input', function() {
-    swapAnimationTime = parseInt(swapSpeedElement.value);
+    swapAnimationTime = 3500 - parseInt(swapSpeedElement.value);
+    console.log(swapAnimationTime);
 });
 
 
