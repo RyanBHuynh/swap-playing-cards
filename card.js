@@ -76,6 +76,10 @@ function swapCards(cardsToSwap) {
     if(leftText == '' || rightText == '')
         return;
     
+    //Disable size slider
+    let sizeSelector = document.querySelector("#size_input");
+    sizeSelector.disabled = true;
+
     let id = null;
     const card1 = document.getElementById(leftText);
     const card2 = document.getElementById(rightText);
