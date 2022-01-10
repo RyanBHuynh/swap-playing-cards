@@ -20,7 +20,6 @@ function main() {
     //Add an event listener to get the user-selected deck size
     arraySizeElement.addEventListener('input', function() {
         cardArraySize = parseInt(arraySizeElement.value);
-        //cardArray = fullDeck.slice(0,cardArraySize); //Slice full deck
         console.log(cardArray);
         displayCards(cardArray,cardArraySize);
         cardSet = new Set(cardArray);
