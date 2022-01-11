@@ -194,5 +194,4 @@ function createOrderedCardHashMap() {
     
     console.log(cardMap);
     return cardMap;
-
 }

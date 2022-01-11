@@ -5,23 +5,36 @@
 //If the cards are the same, returns 0
 //If c1 < c2, returns -1
 //If error, returns false
-function compare(c1,c2) {
+function compareCards(c1,c2) {
     //Convert strings to uppercase
-    c1 = c1.toUppercase();
-    c2 = c2.toUppercase();
+    c1 = c1.toUpperCase();
+    c2 = c2.toUpperCase();
 
     //Check if the cards are in the current deck
     if(!cardSet.has(c1) || !cardSet.has(c2)) {
         alert("Error: at least one of the cards is not a valid playing card");
         return false;
     }
+
+    //Check the hash map result
+    let c1HashRes = cardHashMap.get(c1);
+    let c2HashRes = cardHashMap.get(c2);
+
+    if(c1HashRes == undefined || c2HashRes == undefined)
+        return false;
+
     
+    console.log("c1: ",c1);
+    console.log("c2: ",c2);
+    console.log("cardHashMap[c1]", c1HashRes);
+    console.log("cardHashMap[c2]", c2HashRes);
+
     //Check if the strings are the same
     if(c1 == c2)
         return 0;
     
     //Return 1 if c1 > c2
-    if(cardHashMap[c1] > cardHashMap[c2])
+    if(c1HashRes > c2HashRes)
         return 1;
     
     //Return -1 if c1 < c2
@@ -32,10 +45,17 @@ function compare(c1,c2) {
 
 //Sorts the cards and displays them
 function bubbleSort(cards) {
-    cards = 1;
+    for(let i = 0; i < cardArraySize; i++) {
+        for(let j = i + 1; j < cardArraySize - i - 1; j++) {
+            if(compareCards(cards[j],cards[j + 1]) == 1) {
+                swapCards([cards[j],cards[j + 1]]);
+                editArrayAfterSwap([cards[j],cards[j + 1]]);
+            }
+        }
+    }
 }
 
 //Called when the user clicks the bubble sort button
-function bubbleSortOnClick() {
+function bubbleSortButtonOnClick() {
     bubbleSort(cardArray);
 }
