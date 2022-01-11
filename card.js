@@ -177,3 +177,22 @@ function create52CardDeck() {
     }
     return sortedCards;
 }
+
+/*
+Returns a hash map of all of the cards in order
+Key: card
+Value: the card's rank
+Sort order: 2 through 10, J, Q, K, A, then Clubs, Spades, Diamonds, Hearts
+Smaller/weaker cards will have a smaller value
+*/
+function createOrderedCardHashMap() {
+    let sortedCards = create52CardDeck();
+    let cardMap = new Map();
+
+    for(let i = 0; i < sortedCards.length; i++) 
+        cardMap.set(sortedCards[i],i);
+    
+    console.log(cardMap);
+    return cardMap;
+
+}

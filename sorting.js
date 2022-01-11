@@ -19,6 +19,14 @@ function compare(c1,c2) {
     //Check if the strings are the same
     if(c1 == c2)
         return 0;
+    
+    //Return 1 if c1 > c2
+    if(cardHashMap[c1] > cardHashMap[c2])
+        return 1;
+    
+    //Return -1 if c1 < c2
+    else
+        return -1;
 
 }
 
