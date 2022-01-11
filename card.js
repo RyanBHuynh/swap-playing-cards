@@ -146,13 +146,14 @@ function swapButtonOnClick() {
 //Shuffles an array and returns the shuffled version
 //Fisher-Yates Shuffle
 function shuffleArray(array) {
-    for(let i = array.length - 1; i >= 0; i--) {
-        let randomIndex = Math.floor(Math.random() * array.length);
-        let temp = array[i];
-        array[i] = array[randomIndex];
-        array[randomIndex] = temp;
+    let arrayCopy = array.slice(); //Copy array rather than modifying the original
+    for(let i = arrayCopy.length - 1; i >= 0; i--) {
+        let randomIndex = Math.floor(Math.random() * arrayCopy.length);
+        let temp = arrayCopy[i];
+        arrayCopy[i] = arrayCopy[randomIndex];
+        arrayCopy[randomIndex] = temp;
     }
-    return array;
+    return arrayCopy;
 }
 
 /*
