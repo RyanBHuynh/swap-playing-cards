@@ -7,7 +7,7 @@ Accessible at https://ryanbhuynh.github.io/swap-playing-cards */
 let fullOrderedDeck = create52CardDeck();
 let cardArraySize = document.querySelector("#size_input").value;
 let cardArray = shuffleArray(fullOrderedDeck); //Declared globally to make editing easier
-let swapAnimationTime = document.querySelector("#speed_input").value; //Time of swap animation in milliseconds
+let swapAnimationTime = parseInt(document.querySelector("#speed_input").value); //Time of swap animation in milliseconds
 let cardSet = new Set(cardArray); //This set keeps track of all cards in the deck
 let cardHashMap = createOrderedCardHashMap();
 

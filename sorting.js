@@ -23,12 +23,6 @@ function compareCards(c1,c2) {
     if(c1HashRes == undefined || c2HashRes == undefined)
         return false;
 
-    
-    console.log("c1: ",c1);
-    console.log("c2: ",c2);
-    console.log("cardHashMap[c1]", c1HashRes);
-    console.log("cardHashMap[c2]", c2HashRes);
-
     //Check if the strings are the same
     if(c1 == c2)
         return 0;
@@ -48,11 +42,13 @@ function bubbleSort(cards) {
     for(let i = 0; i < cardArraySize; i++) {
         for(let j = i + 1; j < cardArraySize - i - 1; j++) {
             if(compareCards(cards[j],cards[j + 1]) == 1) {
-                swapCards([cards[j],cards[j + 1]]);
-                editArrayAfterSwap([cards[j],cards[j + 1]]);
+                //swapCards(cards[j],cards[j + 1]);
+                //editArrayAfterSwap([cards[j],cards[j + 1]]);
             }
         }
     }
+    console.log(cardArray);
+    displayCards(cardArray);
 }
 
 //Called when the user clicks the bubble sort button

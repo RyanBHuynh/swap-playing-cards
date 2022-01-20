@@ -93,6 +93,9 @@ function swapCards(cardsToSwap) {
     card2.style["animation-duration"] = (swapAnimationTime / 1000) + 's';
 
     let currentPercent = 0;
+    let setTimeoutDelay = swapAnimationTime + 1;
+    console.log("setTimeoutDelay =", setTimeoutDelay);
+
     window.setTimeout(() => {
         //Remove CSS animation class
         card1.classList.remove("move-left");
@@ -101,7 +104,7 @@ function swapCards(cardsToSwap) {
         //Edit array and display new cards
         editArrayAfterSwap(cardsToSwap); 
         displayCards(cardArray,cardArraySize); 
-      }, swapAnimationTime + 2);
+      }, setTimeoutDelay);
 
     console.log("currentPercent =",currentPercent);
 }
@@ -192,6 +195,5 @@ function createOrderedCardHashMap() {
     for(let i = 0; i < sortedCards.length; i++) 
         cardMap.set(sortedCards[i],i);
     
-    console.log(cardMap);
     return cardMap;
 }
