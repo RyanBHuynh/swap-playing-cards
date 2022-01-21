@@ -1,4 +1,3 @@
-
 /* JavaScript file for the swap-playing-cards website
 Hosted on GitHub Pages
 Accessible at https://ryanbhuynh.github.io/swap-playing-cards */
@@ -16,6 +15,9 @@ function main() {
     displayCards(cardArray,cardArraySize); //Add a specified number of cards to the screen
     let arraySizeElement = document.querySelector("#size_input");
     let swapSpeedElement = document.querySelector("#speed_input");
+
+    //Disable bubble sort button
+    document.querySelector('#bubbleSortButton').disabled = true;
 
     //Event listeners
     //Add an event listener to get the user-selected deck size
