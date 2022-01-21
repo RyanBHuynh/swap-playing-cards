@@ -27,7 +27,6 @@ img.card {
     margin: auto;
     text-align: center;
     padding: 200px 0;
-    
 }
 
 .card {
@@ -84,4 +83,16 @@ body {
     animation-duration: 1.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
+}
+
+/* Mark current card  */
+@keyframes animation-mark-current-card {
+    100% {filter: invert(51%) sepia(54%) saturate(5005%) hue-rotate(165deg) brightness(99%) contrast(102%);}
+}
+
+.mark-current-card {
+    animation-name: animation-mark-current-card;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards; 
 }
