@@ -40,7 +40,7 @@ input {
 
 /* Other formatting */
 h1 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Helvetica, Arial, sans-serif;
     text-align: center;
 }
 
@@ -48,7 +48,11 @@ h1 {
     text-align: center;
     margin: 0 auto;
     left: 50%;
-    font-family: Georgia, 'Times New Roman', Times, serif
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    padding-bottom: 50px;
 }
 
 
