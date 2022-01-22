@@ -85,9 +85,11 @@ body {
     animation-fill-mode: forwards;
 }
 
-/* Mark current card  */
+/*
+/* Mark current card 
 @keyframes animation-mark-current-card {
-    100% {filter: invert(51%) sepia(54%) saturate(5005%) hue-rotate(165deg) brightness(99%) contrast(102%);}
+    0% {filter: brightness(0) saturate(100%);}
+    100% {filter: invert(51%) sepia(29%) saturate(5113%) hue-rotate(328deg) brightness(107%) contrast(110%);}
 }
 
 .mark-current-card {
@@ -96,3 +98,4 @@ body {
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards; 
 }
+*/

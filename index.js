@@ -33,6 +33,7 @@ function main() {
         swapAnimationTime = 3500 - parseInt(swapSpeedElement.value);
         console.log(swapAnimationTime);
     });
+
 }
 
 main();
