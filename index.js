@@ -2,15 +2,17 @@
 Hosted on GitHub Pages
 Accessible at https://ryanbhuynh.github.io/swap-playing-cards */
 
-//Global variables
-let fullOrderedDeck = create52CardDeck(); //Original deck in sorted order
-let cardArray = shuffleArray(fullOrderedDeck.slice()); //Declared globally to make editing easier. A copy of fullOrderedDeck
-let cardSet = new Set(cardArray.slice(0,cardArraySize)); //This set keeps track of all cards in the deck
-let orderedCardHashMap = createCardHashMap(fullOrderedDeck); //Keeps the proper sort order for the cards
-
 //Global variables for event listeners
 let cardArraySize = document.querySelector("#size_input").value;
 let swapAnimationTime = parseInt(document.querySelector("#speed_input").value); //Time of swap animation in milliseconds
+
+//Global variables
+let fullOrderedDeck = create52CardDeck(); //Original deck in sorted order
+let cardArray = shuffleArray(fullOrderedDeck.slice()); //Declared globally to make editing easier. A copy of fullOrderedDeck
+let orderedCardHashMap = createCardHashMap(fullOrderedDeck); //Keeps the proper sort order for the cards
+let cardSet = new Set(cardArray.slice(0,cardArraySize)); //This set keeps track of all cards in the deck
+
+
 
 //Main function that gets called when the website loads
 function main() {
