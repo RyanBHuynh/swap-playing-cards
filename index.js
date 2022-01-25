@@ -12,8 +12,6 @@ let cardArray = shuffleArray(fullOrderedDeck.slice()); //Declared globally to ma
 let orderedCardHashMap = createCardHashMap(fullOrderedDeck); //Keeps the proper sort order for the cards
 let cardSet = new Set(cardArray.slice(0,cardArraySize)); //This set keeps track of all cards in the deck
 
-
-
 //Main function that gets called when the website loads
 function main() {
     displayCards(cardArray,cardArraySize); //Add a specified number of cards to the screen
