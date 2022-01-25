@@ -74,7 +74,7 @@ body {
 /* Move right */
 @keyframes animation-move-right {
     25% {transform: translateY(150px);} /* Move card down */
-    50% { transform: translateY(150px) translateX(-100px); } /* Move card over to the right */
+    50% {transform: translateY(150px) translateX(-100px); } /* Move card over to the right */
     100% {transform: translateX(-100px);} /* Move card down */
 }
 

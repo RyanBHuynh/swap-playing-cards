@@ -1,4 +1,9 @@
-//Has the sort functions
+
+// Sort order: 2 through 10, J, Q, K, A, then Clubs, Spades, Diamonds, Hearts
+// Smaller/weaker cards will have a smaller value
+
+
+//Sort functions
 
 //Compares two cards
 //If c1 > c2, returns 1
@@ -17,8 +22,8 @@ function compareCards(c1,c2) {
     }
 
     //Check the hash map result
-    let c1HashRes = cardHashMap.get(c1);
-    let c2HashRes = cardHashMap.get(c2);
+    let c1HashRes = orderedCardHashMap.get(c1);
+    let c2HashRes = orderedCardHashMap.get(c2);
 
     if(c1HashRes == undefined || c2HashRes == undefined)
         return false;

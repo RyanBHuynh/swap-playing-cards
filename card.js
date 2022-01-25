@@ -32,7 +32,7 @@ function checkCardQuery(leftText,rightText) {
     }
          
     //Check if the cards are next to each other
-    for(let i = 0; i < cardArray.length - 1; i++) {
+    for(let i = 0; i < cardArraySize - 1; i++) {
         if(cardArray[i] == leftText) {
             if(cardArray[i + 1] != rightText) {
                 alert("Error: the cards are not next to each other or they are in the wrong spot");
@@ -60,7 +60,9 @@ function getCardsToSwap() {
         return [leftText,rightText];
     else
         return ['','']; //Return empty query if cards are invalid
+    return [leftText,rightText];
 }
+
 
 /*
 Move card animation
@@ -182,18 +184,15 @@ function create52CardDeck() {
 }
 
 /*
-Returns a hash map of all of the cards in order
+Returns a hash map of all of the cards
 Key: card
 Value: the card's rank
-Sort order: 2 through 10, J, Q, K, A, then Clubs, Spades, Diamonds, Hearts
-Smaller/weaker cards will have a smaller value
 */
-function createOrderedCardHashMap() {
-    let sortedCards = create52CardDeck();
+function createCardHashMap(cards) {
     let cardMap = new Map();
 
-    for(let i = 0; i < sortedCards.length; i++) 
-        cardMap.set(sortedCards[i],i);
+    for(let i = 0; i < cards.length; i++) 
+        cardMap.set(cards[i],i);
     
     return cardMap;
 }
