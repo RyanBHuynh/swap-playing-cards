@@ -63,10 +63,32 @@ function getCardsToSwap() {
     return [leftText,rightText];
 }
 
-//Removes the animation class from leftCard and rightCard after waiting by timeoutDelay milliseconds
-//Displays the cardArray afterwards
-function waitToDisplayAfterSwap(leftCard, rightCard, timeoutDelay) {
+//Returns the distance in pixels needed to swap the left and right cards
+//We assume both cards are in the currently displayed deck in the valid position
+function distBetweenCards(cardsToSwap) {
+    //Get left cards and right card
+    let leftText = cardsToSwap[0];
+    let rightText = cardsToSwap[1];
     
+    let leftPos = 0;
+    let rightPos = 0;
+
+    for(let i = 0; i < cardArraySize; i++) {
+        if(cardArray[i] == leftText)
+            leftPos = i;
+        
+        if(cardArray[i] == rightText) {
+            rightPos = i;
+            break;
+        }
+    }
+    let result = (rightPos - leftPos) * 100;
+    
+    //Error check if result is less than 0
+    if(result <= 0)
+        return -1;
+
+    return result;
 }
 
 /*
@@ -96,6 +118,7 @@ function swapCards(cardsToSwap) {
 
     let setTimeoutDelay = swapAnimationTime + 10;
 
+    //Wait to remove animation class
     window.setTimeout(() => {
         //Remove CSS animation class
         card1.classList.remove("move-left");
