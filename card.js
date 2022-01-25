@@ -63,6 +63,11 @@ function getCardsToSwap() {
     return [leftText,rightText];
 }
 
+//Removes the animation class from leftCard and rightCard after waiting by timeoutDelay milliseconds
+//Displays the cardArray afterwards
+function waitToDisplayAfterSwap(leftCard, rightCard, timeoutDelay) {
+    
+}
 
 /*
 Move card animation
@@ -89,9 +94,7 @@ function swapCards(cardsToSwap) {
     card1.style["animation-duration"] = (swapAnimationTime / 1000) + 's';
     card2.style["animation-duration"] = (swapAnimationTime / 1000) + 's';
 
-    let currentPercent = 0;
-    let setTimeoutDelay = swapAnimationTime + 1;
-    console.log("setTimeoutDelay =", setTimeoutDelay);
+    let setTimeoutDelay = swapAnimationTime + 10;
 
     window.setTimeout(() => {
         //Remove CSS animation class
@@ -103,7 +106,6 @@ function swapCards(cardsToSwap) {
         displayCards(cardArray,cardArraySize); 
       }, setTimeoutDelay);
 
-    console.log("currentPercent =",currentPercent);
 }
 
 //Edits the array after two cards are swapped
