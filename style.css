@@ -12,14 +12,17 @@ img {
 }
 
 img.card {
+    /*
     box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     -o-box-shadow: none;
     -ms-box-shadow: none;
+    
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
+    */
     width: 100px;
 }
 
