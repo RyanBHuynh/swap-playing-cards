@@ -65,23 +65,21 @@ function getCardsToSwap() {
 
 //Returns the distance in pixels needed to swap the left and right cards
 //We assume both cards are in the currently displayed deck in the valid position
+//Returns false if one of the cards does not exist
 function distBetweenCards(cardsToSwap) {
     //Get left cards and right card
     let leftText = cardsToSwap[0];
     let rightText = cardsToSwap[1];
-    
-    let leftPos = 0;
-    let rightPos = 0;
 
-    for(let i = 0; i < cardArraySize; i++) {
-        if(cardArray[i] == leftText)
-            leftPos = i;
-        
-        if(cardArray[i] == rightText) {
-            rightPos = i;
-            break;
-        }
+    //Error check to make sure cards are valid
+    if(!cardHashMap.has(leftText) || !cardHashMap.has(rightText)) {
+        alert("Error: at least one of the cards is not a valid playing card");
+        return false;
     }
+    
+    let leftPos = cardHashMap.get(leftText);
+    let rightPos = cardHashMap.get(rightText);
+
     let result = (rightPos - leftPos) * 100;
     
     //Error check if result is less than 0
