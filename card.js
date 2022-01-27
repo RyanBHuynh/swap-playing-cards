@@ -26,7 +26,7 @@ function displayCards(arrayOfCards,size) {
 //Used as a subroutine in getCardsToSwap 
 function checkCardQuery(leftText,rightText) {
     //Check if the cards are in the current deck
-    if(!cardSet.has(leftText) || !cardSet.has(rightText)) {
+    if(!cardHashMap.has(leftText) || !cardHashMap.has(rightText)) {
         alert("Error: the left card and/or the right card is not a valid playing card");
         return false;
     }

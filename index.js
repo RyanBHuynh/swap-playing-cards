@@ -9,8 +9,8 @@ let swapAnimationTime = parseInt(document.querySelector("#speed_input").value); 
 //Global variables
 let fullOrderedDeck = create52CardDeck(); //Original deck in sorted order
 let cardArray = shuffleArray(fullOrderedDeck.slice()); //Declared globally to make editing easier. A copy of fullOrderedDeck
+let cardHashMap = createCardHashMap(cardArray.slice(0,cardArraySize)); //Create a hash map where the key is the card and the value is the index of the card in cardArray
 let orderedCardHashMap = createCardHashMap(fullOrderedDeck); //Keeps the proper sort order for the cards
-let cardSet = new Set(cardArray.slice(0,cardArraySize)); //This set keeps track of all cards in the deck
 
 //Main function that gets called when the website loads
 function main() {
@@ -27,7 +27,7 @@ function main() {
         cardArraySize = parseInt(arraySizeElement.value);
         console.log(cardArray);
         displayCards(cardArray,cardArraySize);
-        cardSet = new Set(cardArray.slice(0,cardArraySize));
+        cardHashMap = createCardHashMap(cardArray.slice(0,cardArraySize)); //Update hash map as size is changed
     });
 
     //Add an event listener to get the user-selected animation speed

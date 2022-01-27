@@ -16,7 +16,7 @@ function compareCards(c1,c2) {
     c2 = c2.toUpperCase();
 
     //Check if the cards are in the current deck
-    if(!cardSet.has(c1) || !cardSet.has(c2)) {
+    if(!cardHashMap.has(c1) || !cardHashMap.has(c2)) {
         alert("Error: at least one of the cards is not a valid playing card");
         return false;
     }
