@@ -37,7 +37,7 @@ function main() {
         console.log(swapAnimationTime);
     });
 
-    
+    /*
     //Add new CSS rule
     removeCSSRule("img.card");
 
@@ -47,7 +47,7 @@ function main() {
 
     let newCardStyle = "img.card {width: 50px;}";
     sheet.insertRule(newCardStyle,0);
-    
+    */
 
 }
 
