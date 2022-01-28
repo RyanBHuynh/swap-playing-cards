@@ -154,16 +154,12 @@ function editArrayAfterSwap(swappedCards) {
 //Edit array to reflect swapped cards
     cardArray[i] = rightCard;
     cardArray[i+1] = leftCard;
-
-    console.log("cardArray[",i,"] =",cardArray[i]);
-    console.log("cardArray[",i+1,"] =",cardArray[i+1]);
 }
 
 //Runs when the user clicks the swap button
 function swapButtonOnClick() {
     let result = getCardsToSwap();
     swapCards(result); //Runs CSS animation
-    console.log(cardArray);
 }
 
 //Shuffles an array and returns the shuffled version
