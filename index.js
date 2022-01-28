@@ -5,6 +5,7 @@ Accessible at https://ryanbhuynh.github.io/swap-playing-cards */
 //Global variables for event listeners
 let cardArraySize = document.querySelector("#size_input").value;
 let swapAnimationTime = parseInt(document.querySelector("#speed_input").value); //Time of swap animation in milliseconds
+let cardWidth = 100; //The width of each card in pixels
 
 //Global variables
 let fullOrderedDeck = create52CardDeck(); //Original deck in sorted order
@@ -36,7 +37,18 @@ function main() {
         console.log(swapAnimationTime);
     });
 
-    removeCSSRule(".center");
+    
+    //Add new CSS rule
+    removeCSSRule("img.card");
+
+    let style = document.createElement("style")
+    let sheet = style.sheet;
+    document.head.appendChild(style);
+
+    let newCardStyle = "img.card {width: 50px;}";
+    sheet.insertRule(newCardStyle,0);
+    
+
 }
 
 main();

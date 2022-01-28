@@ -95,7 +95,7 @@ function distBetweenCards(cardsToSwap) {
     let leftPos = cardHashMap.get(leftText);
     let rightPos = cardHashMap.get(rightText);
 
-    let result = (rightPos - leftPos) * 100;
+    let result = (rightPos - leftPos) * cardWidth;
     
     //Error check if result is less than 0
     if(result <= 0)
