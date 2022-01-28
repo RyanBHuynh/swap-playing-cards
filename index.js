@@ -36,6 +36,7 @@ function main() {
         console.log(swapAnimationTime);
     });
 
+    removeCSSRule(".center");
 }
 
 main();

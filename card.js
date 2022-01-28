@@ -45,11 +45,9 @@ function checkCardQuery(leftText,rightText) {
 
 //Removes a CSS rule by the specified name
 function removeCSSRule(rulename) {
-    let styleTag = document.getElementById("the-style");
-    let sheet = styleTag.sheet;
+    let styleTag = document.getElementById("main-stylesheet");
+    let sheet = styleTag.sheet ? styleTag.sheet : styleTag.styleSheet;
 
-    if(!styleTag.sheet)
-        sheet = styleTag.styleSheet;
 
     //Look for the rule in the sheet
     if(sheet.cssRules) {
