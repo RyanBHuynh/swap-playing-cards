@@ -43,6 +43,23 @@ function checkCardQuery(leftText,rightText) {
     return true;
 }
 
+//Removes a CSS rule by the specified name
+function removeCSSRule(rulename) {
+    let styleTag = document.getElementById("the-style");
+    let sheet = styleTag.sheet;
+
+    if(!styleTag.sheet)
+        sheet = styleTag.styleSheet;
+
+    //Look for the rule in the sheet
+    if(sheet.cssRules) {
+        for(let i = 0; i < sheet.cssRules.length; i++) {
+            if(sheet.cssRules[i].selectorText === rulename)
+                sheet.deleteRule(i);
+        }
+    }
+}
+
 //Gets two cards from the user input
 //Returns an array containing the cards to swap
 //O(n) time
