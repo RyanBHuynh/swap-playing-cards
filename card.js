@@ -36,18 +36,7 @@ function checkCardQuery(leftText,rightText) {
         alert("Error: the left card and right card are in the wrong order");
         return false
     }
-
-    /*
-    //Check if the cards are next to each other
-    for(let i = 0; i < cardArraySize - 1; i++) {
-        if(cardArray[i] == leftText) {
-            if(cardArray[i + 1] != rightText) {
-                alert("Error: the cards are not next to each other or they are in the wrong spot");
-                return false;
-            }
-        }          
-    }  
-    */
+    
     return true;
 }
 
