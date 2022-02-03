@@ -58,27 +58,12 @@ body {
 }
 
 
-/* CSS animations */
-
-/* Move left */
-@keyframes animation-move-left {
-    25% {transform: translateY(-150px);} /* Move card up */
-    50% { transform: translateY(-150px) translateX(100px); } /* Move card over to the left */
-    100% {transform: translateX(100px);} /* Move card down */
-}
-
+/* CSS animation classes */
 .move-left {
     animation-name: animation-move-left;
     animation-duration: 1.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
-}
-
-/* Move right */
-@keyframes animation-move-right {
-    25% {transform: translateY(150px);} /* Move card down */
-    50% {transform: translateY(150px) translateX(-100px); } /* Move card over to the right */
-    100% {transform: translateX(-100px);} /* Move card down */
 }
 
 .move-right {
@@ -88,7 +73,23 @@ body {
     animation-fill-mode: forwards;
 }
 
+
 /*
+
+@keyframes animation-move-left {
+    25% {transform: translateY(-150px);} 
+    50% { transform: translateY(-150px) translateX(100px); } 
+    100% {transform: translateX(100px);} 
+}
+
+@keyframes animation-move-right {
+    25% {transform: translateY(150px);} 
+    50% {transform: translateY(150px) translateX(-100px); } 
+    100% {transform: translateX(-100px);} 
+}
+
+*/
+
 /* Mark current card 
 @keyframes animation-mark-current-card {
     0% {filter: brightness(0) saturate(100%);}

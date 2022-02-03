@@ -30,7 +30,14 @@ function checkCardQuery(leftText,rightText) {
         alert("Error: the left card and/or the right card is not a valid playing card");
         return false;
     }
-         
+    
+    //Check if the cards are in the right order
+    if(cardHashMap.get(leftText) > cardHashMap.get(rightText)) {
+        alert("Error: the left card and right card are in the wrong order");
+        return false
+    }
+
+    /*
     //Check if the cards are next to each other
     for(let i = 0; i < cardArraySize - 1; i++) {
         if(cardArray[i] == leftText) {
@@ -40,6 +47,7 @@ function checkCardQuery(leftText,rightText) {
             }
         }          
     }  
+    */
     return true;
 }
 
@@ -48,7 +56,6 @@ function removeCSSRule(rulename) {
     let styleTag = document.getElementById("main-stylesheet");
     let sheet = styleTag.sheet ? styleTag.sheet : styleTag.styleSheet;
 
-
     //Look for the rule in the sheet
     if(sheet.cssRules) {
         for(let i = 0; i < sheet.cssRules.length; i++) {
@@ -56,6 +63,11 @@ function removeCSSRule(rulename) {
                 sheet.deleteRule(i);
         }
     }
+}
+
+//Adds a CSS rule by name
+function addCSSRule(rulename) {
+
 }
 
 //Gets two cards from the user input
@@ -118,6 +130,7 @@ function swapCards(cardsToSwap) {
     if(leftText == '' || rightText == '')
         return;
 
+    //Get cards from HTML document
     const card1 = document.getElementById(leftText);
     const card2 = document.getElementById(rightText);
 

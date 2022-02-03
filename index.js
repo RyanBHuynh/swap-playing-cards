@@ -37,17 +37,33 @@ function main() {
         console.log(swapAnimationTime);
     });
 
-    /*
+
     //Add new CSS rule
     removeCSSRule("img.card");
 
-    let style = document.createElement("style")
-    let sheet = style.sheet;
+    let style = document.createElement("style");
     document.head.appendChild(style);
+    let sheet = style.sheet;
 
-    let newCardStyle = "img.card {width: 50px;}";
+    let newCardStyle = "img.card {width: 101px;}";
     sheet.insertRule(newCardStyle,0);
-    */
+
+    let distance = 800 * 1.01;
+
+    let moveLeftAnimation = `@keyframes animation-move-left 
+                            { 25% {transform: translateY(-150px);} 
+                              50% { transform: translateY(-150px) translateX(` + distance + `px); } 
+                              100% {transform: translateX(` + distance + `px);} 
+                            }`;
+    
+    let moveRightAnimation = `@keyframes animation-move-right 
+                            { 25% {transform: translateY(150px);} 
+                              50% { transform: translateY(150px) translateX(-` + distance + `px); } 
+                              100% {transform: translateX(-` + distance + `px);} 
+                            }`;                        
+                    
+    sheet.insertRule(moveLeftAnimation,1);
+    sheet.insertRule(moveRightAnimation,2);
 
 }
 
