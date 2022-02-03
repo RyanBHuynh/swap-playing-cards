@@ -36,7 +36,7 @@ function checkCardQuery(leftText,rightText) {
         alert("Error: the left card and right card are in the wrong order");
         return false
     }
-    
+
     return true;
 }
 
@@ -54,10 +54,6 @@ function removeCSSRule(rulename) {
     }
 }
 
-//Adds a CSS rule by name
-function addCSSRule(rulename) {
-
-}
 
 //Gets two cards from the user input
 //Returns an array containing the cards to swap
@@ -123,6 +119,28 @@ function swapCards(cardsToSwap) {
     const card1 = document.getElementById(leftText);
     const card2 = document.getElementById(rightText);
 
+    //Add new CSS rules
+    let style = document.createElement("style");
+    document.head.appendChild(style);
+    let sheet = style.sheet;
+    
+    let distance = distBetweenCards(cardsToSwap);
+
+    let moveLeftAnimation = `@keyframes animation-move-left 
+                            { 25% {transform: translateY(-150px);} 
+                              50% { transform: translateY(-150px) translateX(` + distance + `px); } 
+                              100% {transform: translateX(` + distance + `px);} 
+                            }`;
+    
+    let moveRightAnimation = `@keyframes animation-move-right 
+                            { 25% {transform: translateY(150px);} 
+                              50% { transform: translateY(150px) translateX(-` + distance + `px); } 
+                              100% {transform: translateX(-` + distance + `px);} 
+                            }`;                        
+                    
+    sheet.insertRule(moveLeftAnimation,0);
+    sheet.insertRule(moveRightAnimation,1);
+
     //Add classes to cards to run CSS animation
     card1.classList.add("move-left");
     card2.classList.add("move-right");
@@ -138,6 +156,10 @@ function swapCards(cardsToSwap) {
         //Remove CSS animation class
         card1.classList.remove("move-left");
         card2.classList.remove("move-right");
+
+        //Remove CSS animation rules
+        sheet.deleteRule(0);
+        sheet.deleteRule(0);
 
         //Edit array and display new cards
         editArrayAfterSwap(cardsToSwap); 
