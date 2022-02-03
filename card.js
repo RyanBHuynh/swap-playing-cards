@@ -101,6 +101,25 @@ function distBetweenCards(cardsToSwap) {
     return result;
 }
 
+//Gets the JS-created stylesheet and a distance value
+//Modifies the stylesheet to get the distance for the animation
+function addAnimationCSSRules(stylesheet,distance) {
+    let moveLeftAnimation = `@keyframes animation-move-left 
+                            { 25% {transform: translateY(-150px);} 
+                              50% { transform: translateY(-150px) translateX(` + distance + `px); } 
+                              100% {transform: translateX(` + distance + `px);} 
+                            }`;
+    
+    let moveRightAnimation = `@keyframes animation-move-right 
+                            { 25% {transform: translateY(150px);} 
+                              50% { transform: translateY(150px) translateX(-` + distance + `px); } 
+                              100% {transform: translateX(-` + distance + `px);} 
+                            }`;                        
+                    
+    stylesheet.insertRule(moveLeftAnimation,0);
+    stylesheet.insertRule(moveRightAnimation,1);
+}
+
 /*
 Move card animation
 Gets two cards to swap from an array of size 2 called cardsToSwap
@@ -126,20 +145,7 @@ function swapCards(cardsToSwap) {
     
     let distance = distBetweenCards(cardsToSwap);
 
-    let moveLeftAnimation = `@keyframes animation-move-left 
-                            { 25% {transform: translateY(-150px);} 
-                              50% { transform: translateY(-150px) translateX(` + distance + `px); } 
-                              100% {transform: translateX(` + distance + `px);} 
-                            }`;
-    
-    let moveRightAnimation = `@keyframes animation-move-right 
-                            { 25% {transform: translateY(150px);} 
-                              50% { transform: translateY(150px) translateX(-` + distance + `px); } 
-                              100% {transform: translateX(-` + distance + `px);} 
-                            }`;                        
-                    
-    sheet.insertRule(moveLeftAnimation,0);
-    sheet.insertRule(moveRightAnimation,1);
+    addAnimationCSSRules(sheet, distance);
 
     //Add classes to cards to run CSS animation
     card1.classList.add("move-left");
@@ -178,21 +184,13 @@ function editArrayAfterSwap(swappedCards) {
     if(leftCard == '' || rightCard == '')
         return;
 
-    let leftFound = false; //Marks whether the left card has been found yet
-    let i = 0; //Array index 
-
-//Find the location of leftCard
-//We assume rightCard is right after leftCard
-    while(leftFound == false && i < cardArray.length - 1) {
-        if(cardArray[i] == leftCard)
-            leftFound = true;
-        else
-            i++;
-    }
+//Use hash map to swap their positions
+    let leftCardPos = cardHashMap.get(leftCard);
+    let rightCardPos = cardHashMap.get(rightCard);
 
 //Edit array to reflect swapped cards
-    cardArray[i] = rightCard;
-    cardArray[i+1] = leftCard;
+    cardArray[leftCardPos] = rightCard;
+    cardArray[rightCardPos] = leftCard;
 }
 
 //Runs when the user clicks the swap button
