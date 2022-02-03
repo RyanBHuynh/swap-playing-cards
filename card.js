@@ -191,6 +191,10 @@ function editArrayAfterSwap(swappedCards) {
 //Edit array to reflect swapped cards
     cardArray[leftCardPos] = rightCard;
     cardArray[rightCardPos] = leftCard;
+
+//Edit hash map to reflect swapped cards
+    cardHashMap.set(leftCard, rightCardPos);
+    cardHashMap.set(rightCard, leftCardPos);
 }
 
 //Runs when the user clicks the swap button
