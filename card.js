@@ -166,7 +166,6 @@ async function swapCards(cardsToSwap) {
     //Wait to remove animation class
     await sleep(setTimeoutDelay);
     
-//    window.setTimeout(() => {
     //Remove CSS animation class
     card1.classList.remove("move-left");
     card2.classList.remove("move-right");
@@ -178,7 +177,6 @@ async function swapCards(cardsToSwap) {
     //Edit array and display new cards
     editArrayAfterSwap(cardsToSwap); 
     displayCards(cardArray,cardArraySize); 
-//      }, setTimeoutDelay);
 
 }
 
