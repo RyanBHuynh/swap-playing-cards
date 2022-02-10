@@ -54,7 +54,6 @@ function removeCSSRule(rulename) {
     }
 }
 
-
 //Gets two cards from the user input
 //Returns an array containing the cards to swap
 //O(n) time
@@ -72,7 +71,6 @@ function getCardsToSwap() {
         return [leftText,rightText];
     else
         return ['','']; //Return empty query if cards are invalid
-    return [leftText,rightText];
 }
 
 //Returns the distance in pixels needed to swap the left and right cards
@@ -118,6 +116,14 @@ function addAnimationCSSRules(stylesheet,distance) {
                     
     stylesheet.insertRule(moveLeftAnimation,0);
     stylesheet.insertRule(moveRightAnimation,1);
+}
+
+/*
+Gets the number of milliseconds to wait
+Returns a promise after waiting the specified amount of time
+*/
+function sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 
 /*

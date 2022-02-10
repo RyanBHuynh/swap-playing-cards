@@ -20,7 +20,7 @@ function main() {
     let swapSpeedElement = document.querySelector("#speed_input");
 
     //Disable bubble sort button
-    document.querySelector('#bubbleSortButton').disabled = true;
+    //document.querySelector('#bubbleSortButton').disabled = true;
 
     //Event listeners
     //Add an event listener to get the user-selected deck size
