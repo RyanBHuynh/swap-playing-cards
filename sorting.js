@@ -2,7 +2,6 @@
 // Sort order: 2 through 10, J, Q, K, A, then Clubs, Spades, Diamonds, Hearts
 // Smaller/weaker cards will have a smaller value
 
-
 //Sort functions
 
 //Compares two cards

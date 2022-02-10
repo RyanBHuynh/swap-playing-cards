@@ -72,34 +72,3 @@ body {
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }
-
-
-/*
-
-@keyframes animation-move-left {
-    25% {transform: translateY(-150px);} 
-    50% { transform: translateY(-150px) translateX(100px); } 
-    100% {transform: translateX(100px);} 
-}
-
-@keyframes animation-move-right {
-    25% {transform: translateY(150px);} 
-    50% {transform: translateY(150px) translateX(-100px); } 
-    100% {transform: translateX(-100px);} 
-}
-
-*/
-
-/* Mark current card 
-@keyframes animation-mark-current-card {
-    0% {filter: brightness(0) saturate(100%);}
-    100% {filter: invert(51%) sepia(29%) saturate(5113%) hue-rotate(328deg) brightness(107%) contrast(110%);}
-}
-
-.mark-current-card {
-    animation-name: animation-mark-current-card;
-    animation-duration: 1.5s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards; 
-}
-*/
