@@ -131,7 +131,7 @@ Move card animation
 Gets two cards to swap from an array of size 2 called cardsToSwap
 cardsToSwap is an array with two elements: [leftCard,rightCard]
 */
-function swapCards(cardsToSwap) {
+async function swapCards(cardsToSwap) {
     //Get left cards and right card
     let leftText = cardsToSwap[0];
     let rightText = cardsToSwap[1];
@@ -164,19 +164,21 @@ function swapCards(cardsToSwap) {
     let setTimeoutDelay = swapAnimationTime + 10;
 
     //Wait to remove animation class
-    window.setTimeout(() => {
-        //Remove CSS animation class
-        card1.classList.remove("move-left");
-        card2.classList.remove("move-right");
+    await sleep(setTimeoutDelay);
+    
+//    window.setTimeout(() => {
+    //Remove CSS animation class
+    card1.classList.remove("move-left");
+    card2.classList.remove("move-right");
 
-        //Remove CSS animation rules
-        sheet.deleteRule(0);
-        sheet.deleteRule(0);
+    //Remove CSS animation rules
+    sheet.deleteRule(0);
+    sheet.deleteRule(0);
 
-        //Edit array and display new cards
-        editArrayAfterSwap(cardsToSwap); 
-        displayCards(cardArray,cardArraySize); 
-      }, setTimeoutDelay);
+    //Edit array and display new cards
+    editArrayAfterSwap(cardsToSwap); 
+    displayCards(cardArray,cardArraySize); 
+//      }, setTimeoutDelay);
 
 }
 
