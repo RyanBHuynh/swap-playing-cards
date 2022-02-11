@@ -42,18 +42,18 @@ function compareCards(c1,c2) {
 }
 
 //Sorts the cards and displays them
-function bubbleSort(cards) {
-    for(let i = 0; i < cardArraySize; i++) {
-        for(let j = i + 1; j < cardArraySize - i - 1; j++) {
+async function bubbleSort(cards) {
+    for(let i = 0; i < cardArraySize - 1; i++) {
+        for(let j = 0; j < cardArraySize - i - 1; j++) {
+            console.log("j =", j);
             if(compareCards(cards[j],cards[j + 1]) == 1) {
-                console.log("left =", cards[j]);
-                console.log("right =",cards[j + 1]);
-                swapCards(cards[j],cards[j + 1]);
+                swapCards([cards[j],cards[j + 1]]);
+                await sleep(setTimeoutDelay);
             }
         }
     }
-    console.log(cardArray);
-    displayCards(cardArray);
+    // console.log(cardArray);
+    // displayCards(cardArray);
 }
 
 //Called when the user clicks the bubble sort button

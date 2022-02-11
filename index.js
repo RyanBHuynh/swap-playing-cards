@@ -5,6 +5,7 @@ Accessible at https://ryanbhuynh.github.io/swap-playing-cards */
 //Global variables for event listeners
 let cardArraySize = document.querySelector("#size_input").value;
 let swapAnimationTime = parseInt(document.querySelector("#speed_input").value); //Time of swap animation in milliseconds
+let setTimeoutDelay = swapAnimationTime + 5; //Add 5ms just as a buffer
 let cardWidth = 100; //The width of each card in pixels
 
 //Global variables
@@ -22,7 +23,6 @@ function main() {
     //Get the user-selected deck size
     arraySizeElement.addEventListener('input', function() {
         cardArraySize = parseInt(arraySizeElement.value);
-        console.log(cardArray);
         displayCards(cardArray,cardArraySize);
         cardHashMap = createCardHashMap(cardArray.slice(0,cardArraySize)); //Update hash map as size is changed
     });

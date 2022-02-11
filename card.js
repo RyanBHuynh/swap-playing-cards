@@ -156,8 +156,6 @@ async function swapCards(cardsToSwap) {
     card1.style["animation-duration"] = (swapAnimationTime / 1000) + 's';
     card2.style["animation-duration"] = (swapAnimationTime / 1000) + 's';
 
-    let setTimeoutDelay = swapAnimationTime + 5;
-
     //Wait to remove animation class
     await sleep(setTimeoutDelay);
     
