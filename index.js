@@ -13,17 +13,13 @@ let cardArray = shuffleArray(fullOrderedDeck.slice()); //Declared globally to ma
 let cardHashMap = createCardHashMap(cardArray.slice(0,cardArraySize)); //Create a hash map where the key is the card and the value is the index of the card in cardArray
 let orderedCardHashMap = createCardHashMap(fullOrderedDeck); //Keeps the proper sort order for the cards
 
-//Main function that gets called when the website loads
+//Called when the website loads
 function main() {
-    displayCards(cardArray,cardArraySize); //Add a specified number of cards to the screen
+    displayCards(cardArray,cardArraySize); //Add cards to the screen
     let arraySizeElement = document.querySelector("#size_input");
     let swapSpeedElement = document.querySelector("#speed_input");
 
-    //Disable bubble sort button
-    //document.querySelector('#bubbleSortButton').disabled = true;
-
-    //Event listeners
-    //Add an event listener to get the user-selected deck size
+    //Get the user-selected deck size
     arraySizeElement.addEventListener('input', function() {
         cardArraySize = parseInt(arraySizeElement.value);
         console.log(cardArray);
@@ -31,7 +27,7 @@ function main() {
         cardHashMap = createCardHashMap(cardArray.slice(0,cardArraySize)); //Update hash map as size is changed
     });
 
-    //Add an event listener to get the user-selected animation speed
+    //Get the user-selected animation speed
     swapSpeedElement.addEventListener('input', function() {
         swapAnimationTime = 3500 - parseInt(swapSpeedElement.value);
         console.log(swapAnimationTime);

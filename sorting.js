@@ -46,8 +46,9 @@ function bubbleSort(cards) {
     for(let i = 0; i < cardArraySize; i++) {
         for(let j = i + 1; j < cardArraySize - i - 1; j++) {
             if(compareCards(cards[j],cards[j + 1]) == 1) {
-                //swapCards(cards[j],cards[j + 1]);
-                //editArrayAfterSwap([cards[j],cards[j + 1]]);
+                console.log("left =", cards[j]);
+                console.log("right =",cards[j + 1]);
+                swapCards(cards[j],cards[j + 1]);
             }
         }
     }

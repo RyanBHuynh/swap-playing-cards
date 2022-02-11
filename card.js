@@ -25,11 +25,11 @@ function displayCards(arrayOfCards,size) {
 //Checks if two cards are swappable
 //Used as a subroutine in getCardsToSwap 
 function checkCardQuery(leftText,rightText) {
-    //Check if the cards are in the current deck
-    if(!cardHashMap.has(leftText) || !cardHashMap.has(rightText)) {
-        alert("Error: the left card and/or the right card is not a valid playing card");
-        return false;
-    }
+    // //Check if the cards are in the current deck
+    // if(!cardHashMap.has(leftText) || !cardHashMap.has(rightText)) {
+    //     alert("Error: the left card and/or the right card is not a valid playing card");
+    //     return false;
+    // }
     
     //Check if the cards are in the right order
     if(cardHashMap.get(leftText) > cardHashMap.get(rightText)) {
@@ -82,10 +82,8 @@ function distBetweenCards(cardsToSwap) {
     let rightText = cardsToSwap[1];
 
     //Error check to make sure cards are valid
-    if(!cardHashMap.has(leftText) || !cardHashMap.has(rightText)) {
-        alert("Error: at least one of the cards is not a valid playing card");
-        return false;
-    }
+    if(checkCardQuery(cardsToSwap) == false)
+        return -1;
     
     let leftPos = cardHashMap.get(leftText);
     let rightPos = cardHashMap.get(rightText);
@@ -132,7 +130,6 @@ Gets two cards to swap from an array of size 2 called cardsToSwap
 cardsToSwap is an array with two elements: [leftCard,rightCard]
 */
 async function swapCards(cardsToSwap) {
-    //Get left cards and right card
     let leftText = cardsToSwap[0];
     let rightText = cardsToSwap[1];
 
@@ -148,9 +145,7 @@ async function swapCards(cardsToSwap) {
     let style = document.createElement("style");
     document.head.appendChild(style);
     let sheet = style.sheet;
-    
     let distance = distBetweenCards(cardsToSwap);
-
     addAnimationCSSRules(sheet, distance);
 
     //Add classes to cards to run CSS animation
@@ -161,7 +156,7 @@ async function swapCards(cardsToSwap) {
     card1.style["animation-duration"] = (swapAnimationTime / 1000) + 's';
     card2.style["animation-duration"] = (swapAnimationTime / 1000) + 's';
 
-    let setTimeoutDelay = swapAnimationTime + 10;
+    let setTimeoutDelay = swapAnimationTime + 5;
 
     //Wait to remove animation class
     await sleep(setTimeoutDelay);
@@ -177,7 +172,6 @@ async function swapCards(cardsToSwap) {
     //Edit array and display new cards
     editArrayAfterSwap(cardsToSwap); 
     displayCards(cardArray,cardArraySize); 
-
 }
 
 //Edits the array after two cards are swapped
