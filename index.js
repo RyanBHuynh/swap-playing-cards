@@ -29,7 +29,8 @@ function main() {
 
     //Get the user-selected animation speed
     swapSpeedElement.addEventListener('input', function() {
-        swapAnimationTime = 3500 - parseInt(swapSpeedElement.value);
+        swapAnimationTime = 2000 - parseInt(swapSpeedElement.value); //2000ms is the the slowest swap speed
+        setTimeoutDelay = swapAnimationTime + 5;
         console.log(swapAnimationTime);
     });
 }
