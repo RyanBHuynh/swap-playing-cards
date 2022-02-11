@@ -43,6 +43,8 @@ function compareCards(c1,c2) {
 
 //Sorts the cards and displays them
 async function bubbleSort(cards) {
+    document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
+
     for(let i = 0; i < cardArraySize - 1; i++) {
         for(let j = 0; j < cardArraySize - i - 1; j++) {
             console.log("j =", j);
@@ -52,8 +54,8 @@ async function bubbleSort(cards) {
             }
         }
     }
-    // console.log(cardArray);
-    // displayCards(cardArray);
+
+    document.querySelector("#size_input").disabled = false;
 }
 
 //Called when the user clicks the bubble sort button
