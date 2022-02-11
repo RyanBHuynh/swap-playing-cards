@@ -46,13 +46,18 @@ async function bubbleSort(cards) {
     document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
 
     for(let i = 0; i < cardArraySize - 1; i++) {
+        everSwapped = false; //Keeps track if there were any swaps during this pass
         for(let j = 0; j < cardArraySize - i - 1; j++) {
-            console.log("j =", j);
             if(compareCards(cards[j],cards[j + 1]) == 1) {
+                everSwapped = true;
                 swapCards([cards[j],cards[j + 1]]);
                 await sleep(setTimeoutDelay);
             }
         }
+
+        //If there were no swaps, then all the cards are in sorted order
+        if(everSwapped == false)
+            break;
     }
 
     document.querySelector("#size_input").disabled = false;
