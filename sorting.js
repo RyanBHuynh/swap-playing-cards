@@ -66,14 +66,14 @@ async function bubbleSort(cards) {
 async function insertionSort(cards) {
     document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
 
-    for(let i = 0; i < cardArraySize; i++) {
+    for(let i = 1; i < cardArraySize; i++) {
         let key = cards[i];
         let j = i - 1;
 
-        while (j >= 0 && arr[j] > key)
+        while (j >= 0 && cards[j] > key)
         { 
-            arr[j + 1] = arr[j]; 
-            j = j - 1; 
+            cards[j + 1] = cards[j]; 
+            j--; 
         } 
         swapCards([cards[j + 1], key]);
         await sleep(setTimeoutDelay);

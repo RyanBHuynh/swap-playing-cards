@@ -27,6 +27,8 @@ function displayCards(arrayOfCards,size) {
 function checkCardQuery(leftText,rightText) {
     //Check if the cards are in the current deck
     if(!cardHashMap.has(leftText) || !cardHashMap.has(rightText)) {
+        console.log("leftText =", leftText);
+        console.log("rightText =", rightText);
         alert("Error: the left card and/or the right card is not a valid playing card");
         return false;
     }
@@ -82,7 +84,7 @@ function distBetweenCards(cardsToSwap) {
     let rightText = cardsToSwap[1];
 
     //Error check to make sure cards are valid
-    if(checkCardQuery(cardsToSwap) == false)
+    if(checkCardQuery(leftText,rightText) == false)
         return -1;
     
     let leftPos = cardHashMap.get(leftText);
