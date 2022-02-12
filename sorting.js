@@ -63,7 +63,30 @@ async function bubbleSort(cards) {
     document.querySelector("#size_input").disabled = false;
 }
 
+async function insertionSort(cards) {
+    document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
+
+    for(let i = 0; i < cardArraySize; i++) {
+        let key = cards[i];
+        let j = i - 1;
+
+        while (j >= 0 && arr[j] > key)
+        { 
+            arr[j + 1] = arr[j]; 
+            j = j - 1; 
+        } 
+        swapCards([cards[j + 1], key]);
+        await sleep(setTimeoutDelay);
+    }
+
+    document.querySelector("#size_input").disabled = false;
+}
+
 //Called when the user clicks the bubble sort button
 function bubbleSortButtonOnClick() {
     bubbleSort(cardArray);
+}
+
+function insertionSortButtonOnClick() {
+    insertionSort(cardArray);
 }
