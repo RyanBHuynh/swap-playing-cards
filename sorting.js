@@ -41,7 +41,6 @@ function compareCards(c1,c2) {
 
 }
 
-//Sorts the cards and displays them
 async function bubbleSort(cards) {
     document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
 
@@ -66,17 +65,18 @@ async function bubbleSort(cards) {
 async function insertionSort(cards) {
     document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
 
-    for(let i = 1; i < cardArraySize; i++) {
+    for(let i = 0; i < cardArraySize - 1; i++) {
         let key = cards[i];
-        let j = i - 1;
+        let j = i + 1;
 
-        while (j >= 0 && cards[j] > key)
+        // Check if j is in bounds and if the left card is greater than the right card
+        while (j > 0 && (compareCards(cards[j - 1], cards[j]) > 0))
         { 
-            cards[j + 1] = cards[j]; 
+            swapCards([cards[j - 1], cards[j]]);
+            await sleep(setTimeoutDelay);
             j--; 
         } 
-        swapCards([cards[j + 1], key]);
-        await sleep(setTimeoutDelay);
+        
     }
 
     document.querySelector("#size_input").disabled = false;
