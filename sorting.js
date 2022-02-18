@@ -62,21 +62,20 @@ async function bubbleSort(cards) {
     document.querySelector("#size_input").disabled = false;
 }
 
+//Edited so that the swaps show properly
 async function insertionSort(cards) {
     document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
 
     for(let i = 0; i < cardArraySize - 1; i++) {
-        let key = cards[i];
         let j = i + 1;
 
-        // Check if j is in bounds and if the left card is greater than the right card
+        //Check if j is in bounds and if the left card is greater than the right card
         while (j > 0 && (compareCards(cards[j - 1], cards[j]) > 0))
         { 
             swapCards([cards[j - 1], cards[j]]);
             await sleep(setTimeoutDelay);
             j--; 
         } 
-        
     }
 
     document.querySelector("#size_input").disabled = false;
