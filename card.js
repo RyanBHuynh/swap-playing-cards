@@ -197,12 +197,6 @@ function editArrayAfterSwap(swappedCards) {
     cardHashMap.set(rightCard, leftCardPos);
 }
 
-//Runs when the user clicks the swap button
-function swapButtonOnClick() {
-    let result = getCardsToSwap();
-    swapCards(result); //Runs CSS animation
-}
-
 //Shuffles an array and returns the shuffled version
 //Fisher-Yates Shuffle
 function shuffleArray(array) {

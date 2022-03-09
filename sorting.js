@@ -1,4 +1,3 @@
-
 // Sort order: 2 through 10, J, Q, K, A, then Clubs, Spades, Diamonds, Hearts
 // Smaller/weaker cards will have a smaller value
 
@@ -79,13 +78,4 @@ async function insertionSort(cards) {
     }
 
     document.querySelector("#size_input").disabled = false;
-}
-
-//Called when the user clicks the bubble sort button
-function bubbleSortButtonOnClick() {
-    bubbleSort(cardArray);
-}
-
-function insertionSortButtonOnClick() {
-    insertionSort(cardArray);
 }

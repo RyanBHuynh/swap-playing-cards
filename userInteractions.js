@@ -20,3 +20,21 @@ function modifySwapSpeed(swapSpeedElement) {
         console.log(swapAnimationTime);
     });
 }
+
+//OnClick functions
+
+//Runs when the user clicks the swap button
+function swapButtonOnClick() {
+    let result = getCardsToSwap();
+    swapCards(result); //Runs CSS animation
+}
+
+//Called when the user clicks the bubble sort button
+function bubbleSortButtonOnClick() {
+    bubbleSort(cardArray);
+}
+
+//Called when the user clicks the insertion sort button
+function insertionSortButtonOnClick() {
+    insertionSort(cardArray);
+}

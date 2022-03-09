@@ -14,8 +14,6 @@ let cardArray = shuffleArray(fullOrderedDeck.slice()); //Declared globally to ma
 let cardHashMap = createCardHashMap(cardArray.slice(0,cardArraySize)); //Create a hash map where the key is the card and the value is the index of the card in cardArray
 let orderedCardHashMap = createCardHashMap(fullOrderedDeck); //Keeps the proper sort order for the cards
 
-
-
 //Called when the website loads
 function main() {
     displayCards(cardArray,cardArraySize); //Add cards to the screen
