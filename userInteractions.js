@@ -29,6 +29,11 @@ function swapButtonOnClick() {
     swapCards(result); //Runs CSS animation
 }
 
+//Called when the user clicks the shuffle deck button
+function shuffleButtonOnClick() {
+    shuffleDeck();
+}
+
 //Called when the user clicks the bubble sort button
 function bubbleSortButtonOnClick() {
     bubbleSort(cardArray);

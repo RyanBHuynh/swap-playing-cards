@@ -201,12 +201,14 @@ function editArrayAfterSwap(swappedCards) {
 //Fisher-Yates Shuffle
 function shuffleArray(array) {
     let arrayCopy = array.slice(); //Copy array rather than modifying the original
+
     for(let i = arrayCopy.length - 1; i >= 0; i--) {
         let randomIndex = Math.floor(Math.random() * arrayCopy.length);
         let temp = arrayCopy[i];
         arrayCopy[i] = arrayCopy[randomIndex];
         arrayCopy[randomIndex] = temp;
     }
+
     return arrayCopy;
 }
 
@@ -218,7 +220,6 @@ No jokers are included
 Sort order: Clubs, Spades, Diamonds, Hearts
 */
 function create52CardDeck() {
-//Initialize variables
     const rank = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
     const suit = ['C','S','D','H'];
     let sortedCards = []
@@ -244,4 +245,13 @@ function createCardHashMap(cards) {
         cardMap.set(cards[i],i);
     
     return cardMap;
+}
+
+//Visually shuffles the deck on the website
+//cards is an array
+function shuffleDeck(cards) {
+    console.log("")
+
+
+
 }
