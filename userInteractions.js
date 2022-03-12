@@ -9,6 +9,7 @@ function modifyDeckSize(arraySizeElement) {
         cardArraySize = parseInt(arraySizeElement.value);
         displayCards(cardArray,cardArraySize);
         cardHashMap = createCardHashMap(cardArray.slice(0,cardArraySize)); //Update hash map as size is changed
+        console.log("cardArraySize = ", cardArraySize)
     });
 }
 
@@ -31,7 +32,7 @@ function swapButtonOnClick() {
 
 //Called when the user clicks the shuffle deck button
 function shuffleButtonOnClick() {
-    shuffleDeck();
+    shuffleDeckVisually();
 }
 
 //Called when the user clicks the bubble sort button

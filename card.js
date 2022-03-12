@@ -249,6 +249,32 @@ function createCardHashMap(cards) {
 
 //Visually shuffles the deck on the website
 //cards is an array
-function shuffleDeckVisually(cards) {
-    console.log("")
+async function shuffleDeckVisually() {
+    let cardsToSwap = [];
+
+    for(let i = cardArraySize - 1; i >= 0; i--) {
+        let indexToSwapWith = Math.floor(Math.random() * cardArraySize); //Choose a random index
+
+        //Do nothing if the random index equals i
+        if(i == indexToSwapWith)
+            continue;
+        
+        //Check if indexToSwapWith is to the right of i
+        if(indexToSwapWith > i) {
+            cardsToSwap.push(cardArray[i]);
+            cardsToSwap.push(cardArray[indexToSwapWith]);
+            swapCardsVisually(cardsToSwap);
+            await sleep(setTimeoutDelay);
+            cardsToSwap = [];
+        }
+
+        //Otherwise, indexToSwapWith is to the left of i
+        else {
+            cardsToSwap.push(cardArray[indexToSwapWith]);
+            cardsToSwap.push(cardArray[i]);
+            swapCardsVisually(cardsToSwap);
+            await sleep(setTimeoutDelay);
+            cardsToSwap = [];
+        }
+    }
 }
