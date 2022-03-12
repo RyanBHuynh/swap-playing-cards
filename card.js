@@ -250,6 +250,7 @@ function createCardHashMap(cards) {
 //Visually shuffles the deck on the website
 //cards is an array
 async function shuffleDeckVisually() {
+    document.querySelector("#size_input").disabled = true; //Disable size slider during shuffling
     let cardsToSwap = [];
 
     for(let i = cardArraySize - 1; i >= 0; i--) {
@@ -277,4 +278,6 @@ async function shuffleDeckVisually() {
             cardsToSwap = [];
         }
     }
+
+    document.querySelector("#size_input").disabled = false; //Enable size slider
 }
