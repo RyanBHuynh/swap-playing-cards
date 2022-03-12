@@ -131,7 +131,7 @@ Move card animation
 Gets two cards to swap from an array of size 2 called cardsToSwap
 cardsToSwap is an array with two elements: [leftCard,rightCard]
 */
-async function swapCards(cardsToSwap) {
+async function swapCardsVisually(cardsToSwap) {
     let leftText = cardsToSwap[0];
     let rightText = cardsToSwap[1];
 
@@ -249,9 +249,6 @@ function createCardHashMap(cards) {
 
 //Visually shuffles the deck on the website
 //cards is an array
-function shuffleDeck(cards) {
+function shuffleDeckVisually(cards) {
     console.log("")
-
-
-
 }

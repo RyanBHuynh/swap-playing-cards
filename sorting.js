@@ -48,7 +48,7 @@ async function bubbleSort(cards) {
         for(let j = 0; j < cardArraySize - i - 1; j++) {
             if(compareCards(cards[j],cards[j + 1]) == 1) {
                 everSwapped = true;
-                swapCards([cards[j],cards[j + 1]]);
+                swapCardsVisually([cards[j],cards[j + 1]]);
                 await sleep(setTimeoutDelay);
             }
         }
@@ -71,7 +71,7 @@ async function insertionSort(cards) {
         //Check if j is in bounds and if the left card is greater than the right card
         while (j > 0 && (compareCards(cards[j - 1], cards[j]) > 0))
         { 
-            swapCards([cards[j - 1], cards[j]]);
+            swapCardsVisually([cards[j - 1], cards[j]]);
             await sleep(setTimeoutDelay);
             j--; 
         } 
