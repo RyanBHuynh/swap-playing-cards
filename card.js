@@ -169,32 +169,19 @@ async function swapCardsVisually(cardsToSwap) {
     sheet.deleteRule(0);
     sheet.deleteRule(0);
 
-    //Edit array and display new cards
-    editArrayAfterSwap(cardsToSwap); 
+//Update hash map and array with new card positions
+    let leftCardPos = cardHashMap.get(leftText);
+    let rightCardPos = cardHashMap.get(rightText);
+
+    //Edit array to reflect swapped cards
+    cardArray[leftCardPos] = rightText;
+    cardArray[rightCardPos] = leftText;
+
+    //Edit hash map to reflect swapped cards
+    cardHashMap.set(leftText, rightCardPos);
+    cardHashMap.set(rightText, leftCardPos);
+
     displayCards(cardArray,cardArraySize); 
-}
-
-//Edits the array after two cards are swapped
-//swappedCards is an array with two elements: [leftCard,rightCard]
-function editArrayAfterSwap(swappedCards) {
-    let leftCard = swappedCards[0];
-    let rightCard = swappedCards[1];
-
-//If empty strings are stored, then do nothing
-    if(leftCard == '' || rightCard == '')
-        return;
-
-//Use hash map to swap their positions
-    let leftCardPos = cardHashMap.get(leftCard);
-    let rightCardPos = cardHashMap.get(rightCard);
-
-//Edit array to reflect swapped cards
-    cardArray[leftCardPos] = rightCard;
-    cardArray[rightCardPos] = leftCard;
-
-//Edit hash map to reflect swapped cards
-    cardHashMap.set(leftCard, rightCardPos);
-    cardHashMap.set(rightCard, leftCardPos);
 }
 
 //Shuffles an array and returns the shuffled version
