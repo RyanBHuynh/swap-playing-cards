@@ -75,9 +75,11 @@ function getCardsToSwap() {
         return ['','']; //Return empty query if cards are invalid
 }
 
-//Returns the distance in pixels needed to swap the left and right cards
-//We assume both cards are in the currently displayed deck in the valid position
-//Returns false if one of the cards does not exist
+/*
+Returns the distance in pixels needed to swap the left and right cards
+We assume both cards are in the currently displayed deck in the valid position
+Returns false if one of the cards does not exist
+*/
 function distBetweenCards(cardsToSwap) {
     //Get left cards and right card
     let leftText = cardsToSwap[0];
@@ -99,8 +101,12 @@ function distBetweenCards(cardsToSwap) {
     return result;
 }
 
-//Gets the JS-created stylesheet and a distance value
-//Modifies the stylesheet to get the distance for the animation
+/*
+Adds a CSS animation for swapping two cards on the screen
+Parameters:
+ - the JS-created stylesheet
+ - a distance value (the number of pixels between two cards)
+*/
 function addAnimationCSSRules(stylesheet,distance) {
     let moveLeftAnimation = `@keyframes animation-move-left 
                             { 25% {transform: translateY(-150px);} 
@@ -119,7 +125,8 @@ function addAnimationCSSRules(stylesheet,distance) {
 }
 
 /*
-Gets the number of milliseconds to wait
+Delays async code for a specified amount of time
+Parameters: the number of milliseconds to wait
 Returns a promise after waiting the specified amount of time
 */
 function sleep(milliseconds) {
@@ -127,8 +134,8 @@ function sleep(milliseconds) {
 }
 
 /*
-Move card animation
-Gets two cards to swap from an array of size 2 called cardsToSwap
+Swaps two cards visually on the website
+Parameters: Gets two cards to swap from an array of size 2 called cardsToSwap
 cardsToSwap is an array with two elements: [leftCard,rightCard]
 */
 async function swapCardsVisually(cardsToSwap) {
@@ -184,8 +191,12 @@ async function swapCardsVisually(cardsToSwap) {
     displayCards(cardArray,cardArraySize); 
 }
 
-//Shuffles an array and returns the shuffled version
-//Fisher-Yates Shuffle
+/*
+Shuffles an array and returns the shuffled version
+Uses the Fisher-Yates Shuffle
+Parameters: an array
+Return values: a copy of array with shuffled values
+*/
 function shuffleArray(array) {
     let arrayCopy = array.slice(); //Copy array rather than modifying the original
 
@@ -222,6 +233,7 @@ function create52CardDeck() {
 
 /*
 Returns a hash map of all of the cards
+Parameters: cards, an array of cards of any size
 Key: card
 Value: the card's rank
 */
@@ -239,12 +251,14 @@ Visually shuffles the deck on the website
 Fisher-Yates Shuffle is implemented
 */
 async function shuffleDeckVisually() {
-    document.querySelector("#size_input").disabled = true; //Disable size slider during shuffling
     let left = "";
     let right = "";
+    let indexToSwapWith = 0;
 
+    document.querySelector("#size_input").disabled = true; //Disable size slider during shuffling
+    
     for(let i = cardArraySize - 1; i >= 0; i--) {
-        let indexToSwapWith = Math.floor(Math.random() * cardArraySize); //Choose a random index
+        indexToSwapWith = Math.floor(Math.random() * cardArraySize); //Choose a random index
 
         //Do nothing if the random index equals i
         if(i == indexToSwapWith)
@@ -268,5 +282,5 @@ async function shuffleDeckVisually() {
         }
     }
 
-    document.querySelector("#size_input").disabled = false; //Enable size slider
+    document.querySelector("#size_input").disabled = false;
 }

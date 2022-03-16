@@ -3,13 +3,17 @@
 
 //Sort functions
 
-//Compares two cards
-//If c1 > c2, returns 1
-//If the cards are the same, returns 0
-//If c1 < c2, returns -1
-//If error, returns false
+/*
+Compares two cards and returns a value indicating which card has a greater value according to the cards' sorted order
+ - If c1 > c2, returns 1
+ - If the cards are the same, returns 0
+ - If c1 < c2, returns -1
+ - If error, returns false
+
+Parameters: two different cards
+Return value: An integer indicating the order of the two cards
+*/
 function compareCards(c1,c2) {
-    //Convert strings to uppercase
     c1 = c1.toUpperCase();
     c2 = c2.toUpperCase();
 
@@ -19,22 +23,18 @@ function compareCards(c1,c2) {
         return false;
     }
 
-    //Check the hash map result
     let c1HashRes = orderedCardHashMap.get(c1);
     let c2HashRes = orderedCardHashMap.get(c2);
 
     if(c1HashRes == undefined || c2HashRes == undefined)
         return false;
 
-    //Check if the strings are the same
     if(c1 == c2)
         return 0;
     
-    //Return 1 if c1 > c2
     if(c1HashRes > c2HashRes)
         return 1;
     
-    //Return -1 if c1 < c2
     else
         return -1;
 
