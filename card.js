@@ -234,11 +234,14 @@ function createCardHashMap(cards) {
     return cardMap;
 }
 
-//Visually shuffles the deck on the website
-//cards is an array
+/* 
+Visually shuffles the deck on the website
+Fisher-Yates Shuffle is implemented
+*/
 async function shuffleDeckVisually() {
     document.querySelector("#size_input").disabled = true; //Disable size slider during shuffling
-    let cardsToSwap = [];
+    let left = "";
+    let right = "";
 
     for(let i = cardArraySize - 1; i >= 0; i--) {
         let indexToSwapWith = Math.floor(Math.random() * cardArraySize); //Choose a random index
@@ -247,22 +250,21 @@ async function shuffleDeckVisually() {
         if(i == indexToSwapWith)
             continue;
         
-        //Check if indexToSwapWith is to the right of i
-        if(indexToSwapWith > i) {
-            cardsToSwap.push(cardArray[i]);
-            cardsToSwap.push(cardArray[indexToSwapWith]);
-            swapCardsVisually(cardsToSwap);
-            await sleep(setTimeoutDelay);
-            cardsToSwap = [];
-        }
-
-        //Otherwise, indexToSwapWith is to the left of i
         else {
-            cardsToSwap.push(cardArray[indexToSwapWith]);
-            cardsToSwap.push(cardArray[i]);
-            swapCardsVisually(cardsToSwap);
+            //Check if indexToSwapWith is to the right of i
+            if(indexToSwapWith > i) {
+                left = cardArray[i];
+                right = cardArray[indexToSwapWith];
+            } 
+
+            //Otherwise, indexToSwapWith is to the left of i
+            else {
+                left = cardArray[indexToSwapWith];
+                right = cardArray[i];
+            }
+
+            swapCardsVisually([left, right]);
             await sleep(setTimeoutDelay);
-            cardsToSwap = [];
         }
     }
 
