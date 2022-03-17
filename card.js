@@ -83,13 +83,15 @@ function getCardsToSwap() {
 /*
 Find and return the distance in pixels between the left and right cards
 
-Parameters: leftCard and rightCard
+Parameters: 
+ - leftCard and rightCard: the cards to get the distance between
+ - cardWidth: the width of each card in pixels
 Return values:
  - Returns the distance in pixels to swap the left and right cards
  - Returns -1 if one of the cards does not exist or the cards are in the wrong order
 
 */
-function distBetweenCards(leftCard, rightCard) {
+function distBetweenCards(leftCard, rightCard, cardWidth) {
     //Error check to make sure cards are valid
     if(checkCardQuery(leftCard,rightCard) == false)
         return -1;
@@ -155,10 +157,9 @@ async function swapCardsVisually(leftText, rightText) {
     let style = document.createElement("style");
     document.head.appendChild(style);
     let sheet = style.sheet;
-    let distance = distBetweenCards(leftText, rightText);
+    let distance = distBetweenCards(leftText, rightText, 100);
     addAnimationCSSRules(sheet, distance);
 
-    //Add classes to cards to run CSS animation
     card1.classList.add("move-left");
     card2.classList.add("move-right");
 
@@ -166,26 +167,21 @@ async function swapCardsVisually(leftText, rightText) {
     card1.style["animation-duration"] = (swapAnimationTime / 1000) + 's';
     card2.style["animation-duration"] = (swapAnimationTime / 1000) + 's';
 
-    //Wait to remove animation class
     await sleep(setTimeoutDelay);
     
-    //Remove CSS animation class
+    //Remove CSS animation class and rules
     card1.classList.remove("move-left");
     card2.classList.remove("move-right");
-
-    //Remove CSS animation rules
     sheet.deleteRule(0);
     sheet.deleteRule(0);
 
-//Update hash map and array with new card positions
+    //Update hash map and array with new card positions
     let leftCardPos = cardHashMap.get(leftText);
     let rightCardPos = cardHashMap.get(rightText);
 
-    //Edit array to reflect swapped cards
     cardArray[leftCardPos] = rightText;
     cardArray[rightCardPos] = leftText;
 
-    //Edit hash map to reflect swapped cards
     cardHashMap.set(leftText, rightCardPos);
     cardHashMap.set(rightText, leftCardPos);
 
@@ -199,7 +195,7 @@ Parameters: an array
 Return values: a copy of array with shuffled values
 */
 function shuffleArray(array) {
-    let arrayCopy = array.slice(); //Copy array rather than modifying the original
+    let arrayCopy = array.slice();
 
     for(let i = arrayCopy.length - 1; i >= 0; i--) {
         let randomIndex = Math.floor(Math.random() * arrayCopy.length);
@@ -218,12 +214,12 @@ For example, a King of Hearts is represented as 'KH' in the array
 No jokers are included
 Sort order: Clubs, Spades, Diamonds, Hearts
 */
-function create52CardDeck() {
+function create52CardArray() {
     const rank = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
     const suit = ['C','S','D','H'];
-    let sortedCards = []
+    let sortedCards = [];
 
-//Insert cards in sorted order into sortedCards
+    //Insert cards in sorted order into sortedCards
     for(i in rank) {
         for(j in suit) {
             sortedCards.push(rank[i] + suit[j]);
