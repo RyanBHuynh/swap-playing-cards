@@ -1,16 +1,16 @@
+//This JavaScript file has the functions tailoring to the cards themselves
+
 /*
-This JavaScript file has the functions tailoring to the cards themselves
+Adds cards onto the screen from the cards selected in arrayOfCards
+
+Parameters:
+ - arrayOfCards: the card array to display
+ - size: the number of cards to display
 */
-
-//Function definitions
-
-//Adds cards onto the screen from the cards selected in arrayOfCards
-//Size represents the number of cards to display on the screen
 function displayCards(arrayOfCards,size) {
     let cardDiv = document.getElementById('cards');
     cardDiv.innerHTML = "";
     
-    //Loop through arrayOfCards
     for(let i = 0; i < size; i++) {
         //Select image file
         let imgCard = document.createElement("img");
@@ -22,13 +22,17 @@ function displayCards(arrayOfCards,size) {
     }
 }
 
-//Checks if two cards are swappable
-//Used as a subroutine in getCardsToSwap 
+/*
+Checks if two cards are swappable
+Used as a subroutine in getCardsToSwap 
+
+Parameters:
+ - leftText: the left card to check
+ - rightText: the right card to check
+*/
 function checkCardQuery(leftText,rightText) {
     //Check if the cards are in the current deck
     if(!cardHashMap.has(leftText) || !cardHashMap.has(rightText)) {
-        console.log("leftText =", leftText);
-        console.log("rightText =", rightText);
         alert("Error: the left card and/or the right card is not a valid playing card");
         return false;
     }
@@ -36,18 +40,22 @@ function checkCardQuery(leftText,rightText) {
     //Check if the cards are in the right order
     if(cardHashMap.get(leftText) > cardHashMap.get(rightText)) {
         alert("Error: the left card and right card are in the wrong order");
-        return false
+        return false;
     }
 
     return true;
 }
 
-//Removes a CSS rule by the specified name
+/*
+Removes a CSS rule by the specified name from the main stylesheet
+Parameters:
+ - rulename: the name of the rule to remove
+*/
 function removeCSSRule(rulename) {
     let styleTag = document.getElementById("main-stylesheet");
     let sheet = styleTag.sheet ? styleTag.sheet : styleTag.styleSheet;
 
-    //Look for the rule in the sheet
+    //Look for the rule in the sheet and delete it
     if(sheet.cssRules) {
         for(let i = 0; i < sheet.cssRules.length; i++) {
             if(sheet.cssRules[i].selectorText === rulename)
@@ -56,14 +64,11 @@ function removeCSSRule(rulename) {
     }
 }
 
-//Gets two cards from the user input
-//Returns an array containing the cards to swap
-//O(n) time
+/*
+Gets two cards from the user input on the website
+Return value: an array containing the cards to swap
+*/
 function getCardsToSwap() {
-    let leftInput = document.getElementById('leftInput');
-    let rightInput = document.getElementById('rightInput');
-    let button = document.getElementById('swapButton');
-
     //Get text input and make it all uppercase
     let leftText = document.getElementById('leftInput').value.toUpperCase();
     let rightText = document.getElementById('rightInput').value.toUpperCase();
@@ -76,21 +81,21 @@ function getCardsToSwap() {
 }
 
 /*
-Returns the distance in pixels needed to swap the left and right cards
-We assume both cards are in the currently displayed deck in the valid position
-Returns false if one of the cards does not exist
-*/
-function distBetweenCards(cardsToSwap) {
-    //Get left cards and right card
-    let leftText = cardsToSwap[0];
-    let rightText = cardsToSwap[1];
+Find and return the distance in pixels between the left and right cards
 
+Parameters: leftCard and rightCard
+Return values:
+ - Returns the distance in pixels to swap the left and right cards
+ - Returns -1 if one of the cards does not exist
+
+*/
+function distBetweenCards(leftCard, rightCard) {
     //Error check to make sure cards are valid
-    if(checkCardQuery(leftText,rightText) == false)
+    if(checkCardQuery(leftCard,rightCard) == false)
         return -1;
     
-    let leftPos = cardHashMap.get(leftText);
-    let rightPos = cardHashMap.get(rightText);
+    let leftPos = cardHashMap.get(leftCard);
+    let rightPos = cardHashMap.get(rightCard);
 
     let result = (rightPos - leftPos) * cardWidth;
     
@@ -154,7 +159,7 @@ async function swapCardsVisually(cardsToSwap) {
     let style = document.createElement("style");
     document.head.appendChild(style);
     let sheet = style.sheet;
-    let distance = distBetweenCards(cardsToSwap);
+    let distance = distBetweenCards(leftText, rightText);
     addAnimationCSSRules(sheet, distance);
 
     //Add classes to cards to run CSS animation

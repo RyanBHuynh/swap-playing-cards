@@ -1,8 +1,6 @@
 // Sort order: 2 through 10, J, Q, K, A, then Clubs, Spades, Diamonds, Hearts
 // Smaller/weaker cards will have a smaller value
 
-//Sort functions
-
 /*
 Compares two cards and returns a value indicating which card has a greater value according to the cards' sorted order
  - If c1 > c2, returns 1
@@ -37,14 +35,21 @@ function compareCards(c1,c2) {
     
     else
         return -1;
-
 }
 
+//Sort functions
+
+/*
+Sorts the cards on the screen using bubble sort
+Parameters: the current card array
+*/
 async function bubbleSort(cards) {
     document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
 
+    let everSwapped = false;
     for(let i = 0; i < cardArraySize - 1; i++) {
         everSwapped = false; //Keeps track if there were any swaps during this pass
+
         for(let j = 0; j < cardArraySize - i - 1; j++) {
             if(compareCards(cards[j],cards[j + 1]) == 1) {
                 everSwapped = true;
@@ -53,7 +58,7 @@ async function bubbleSort(cards) {
             }
         }
 
-        //If there were no swaps, then all the cards are in sorted order
+        //Stop sorting if cards are already sorted
         if(everSwapped == false)
             break;
     }
@@ -61,7 +66,10 @@ async function bubbleSort(cards) {
     document.querySelector("#size_input").disabled = false;
 }
 
-//Edited so that the swaps show properly
+/*
+Sorts the cards on the screen using insertion sort
+Parameters: the current card array
+*/
 async function insertionSort(cards) {
     document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
 
