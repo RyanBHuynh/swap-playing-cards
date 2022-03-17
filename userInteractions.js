@@ -4,7 +4,9 @@
 //Event listeners
 
 //Get and change the user-selected deck size
-function modifyDeckSize(arraySizeElement) {
+function modifyDeckSize() {
+    let arraySizeElement = document.querySelector("#size_input");
+
     arraySizeElement.addEventListener('input', function() {
         cardArraySize = parseInt(arraySizeElement.value);
         displayCards(cardArray,cardArraySize);
@@ -14,7 +16,9 @@ function modifyDeckSize(arraySizeElement) {
 }
 
 //Get and change the user-selected swap speed
-function modifySwapSpeed(swapSpeedElement) {
+function modifySwapSpeed() {
+    let swapSpeedElement = document.querySelector("#speed_input");
+
     swapSpeedElement.addEventListener('input', function() {
         swapAnimationTime = 2000 - parseInt(swapSpeedElement.value); //2000ms is the the slowest swap speed
         setTimeoutDelay = swapAnimationTime + 5;
@@ -29,7 +33,7 @@ function swapButtonOnClick() {
     let result = getCardsToSwap();
     let leftCard = result[0];
     let rightCard = result[1];
-    
+
     swapCardsVisually(leftCard, rightCard); //Runs CSS animation
 }
 

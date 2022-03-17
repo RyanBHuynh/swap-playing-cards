@@ -16,11 +16,10 @@ let orderedCardHashMap = createCardHashMap(fullOrderedDeck); //Keeps the proper 
 //Called when the website loads
 function main() {
     displayCards(cardArray,cardArraySize); //Add cards to the screen
-    let arraySizeElement = document.querySelector("#size_input");
-    let swapSpeedElement = document.querySelector("#speed_input");
 
-    modifyDeckSize(arraySizeElement);
-    modifySwapSpeed(swapSpeedElement);
+    //Event listeners
+    modifyDeckSize();
+    modifySwapSpeed();
 }
 
 main();
