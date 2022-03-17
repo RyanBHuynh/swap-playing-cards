@@ -145,8 +145,7 @@ Parameters: Gets two cards to swap from an array of size 2 called cardsToSwap
 cardsToSwap is an array with two elements: [leftCard,rightCard]
 */
 async function swapCardsVisually(leftText, rightText) {
-    //Do nothing if either location is empty
-    if(leftText == '' || rightText == '')
+    if(checkCardQuery(leftText, rightText) == false)
         return;
 
     //Get cards from HTML document
