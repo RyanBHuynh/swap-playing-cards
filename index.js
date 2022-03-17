@@ -8,7 +8,7 @@ let swapAnimationTime = 2000 - parseInt(document.querySelector("#speed_input").v
 let setTimeoutDelay = swapAnimationTime + 5; //Add 5ms just as a buffer
 
 //Global variables
-let fullOrderedDeck = create52CardArray(); //Original deck in sorted order
+let fullOrderedDeck = createOrdered52CardArray(); //Original deck in sorted order
 let cardArray = shuffleArray(fullOrderedDeck.slice()); //Declared globally to make editing easier. A copy of fullOrderedDeck
 let cardHashMap = createCardHashMap(cardArray.slice(0,cardArraySize)); //Create a hash map where the key is the card and the value is the index of the card in cardArray
 let orderedCardHashMap = createCardHashMap(fullOrderedDeck); //Keeps the proper sort order for the cards

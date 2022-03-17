@@ -1,4 +1,4 @@
-//This JavaScript file has the functions tailoring to the cards themselves
+//This JavaScript file has the functions related to the cards themselves
 
 /*
 Adds cards onto the screen from the cards selected in arrayOfCards
@@ -213,7 +213,7 @@ For example, a King of Hearts is represented as 'KH' in the array
 No jokers are included
 Sort order: Clubs, Spades, Diamonds, Hearts
 */
-function create52CardArray() {
+function createOrdered52CardArray() {
     const rank = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
     const suit = ['C','S','D','H'];
     let sortedCards = [];
