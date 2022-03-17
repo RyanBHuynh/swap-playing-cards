@@ -27,7 +27,10 @@ function modifySwapSpeed(swapSpeedElement) {
 //Runs when the user clicks the swap button
 function swapButtonOnClick() {
     let result = getCardsToSwap();
-    swapCardsVisually(result); //Runs CSS animation
+    let leftCard = result[0];
+    let rightCard = result[1];
+    
+    swapCardsVisually(leftCard, rightCard); //Runs CSS animation
 }
 
 //Called when the user clicks the shuffle deck button

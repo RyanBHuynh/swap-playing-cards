@@ -86,7 +86,7 @@ Find and return the distance in pixels between the left and right cards
 Parameters: leftCard and rightCard
 Return values:
  - Returns the distance in pixels to swap the left and right cards
- - Returns -1 if one of the cards does not exist
+ - Returns -1 if one of the cards does not exist or the cards are in the wrong order
 
 */
 function distBetweenCards(leftCard, rightCard) {
@@ -96,7 +96,6 @@ function distBetweenCards(leftCard, rightCard) {
     
     let leftPos = cardHashMap.get(leftCard);
     let rightPos = cardHashMap.get(rightCard);
-
     let result = (rightPos - leftPos) * cardWidth;
     
     //Error check if result is less than 0
@@ -143,10 +142,7 @@ Swaps two cards visually on the website
 Parameters: Gets two cards to swap from an array of size 2 called cardsToSwap
 cardsToSwap is an array with two elements: [leftCard,rightCard]
 */
-async function swapCardsVisually(cardsToSwap) {
-    let leftText = cardsToSwap[0];
-    let rightText = cardsToSwap[1];
-
+async function swapCardsVisually(leftText, rightText) {
     //Do nothing if either location is empty
     if(leftText == '' || rightText == '')
         return;
@@ -282,7 +278,7 @@ async function shuffleDeckVisually() {
                 right = cardArray[i];
             }
 
-            swapCardsVisually([left, right]);
+            swapCardsVisually(left, right);
             await sleep(setTimeoutDelay);
         }
     }
