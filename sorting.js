@@ -18,6 +18,8 @@ function compareCards(c1,c2) {
     //Check if the cards are in the current deck
     if(!cardHashMap.has(c1) || !cardHashMap.has(c2)) {
         alert("Error: at least one of the cards is not a valid playing card");
+        console.log("c1:", c1);
+        console.log("c2:", c2);
         return false;
     }
 
@@ -86,4 +88,59 @@ async function insertionSort(cards) {
     }
 
     document.querySelector("#size_input").disabled = false;
+}
+
+/*
+Merge two arrays together in sorted order
+Parameters: two arrays
+*/
+async function merge(array1, array2) {
+
+}
+
+/*
+Sorts the cards on the screen using merge sort
+Parameters: the current card array
+*/
+async function mergeSort(cards) {
+    document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
+
+    
+    document.querySelector("#size_input").disabled = false;
+}
+
+/*
+Partitions the cards on the screen for quicksort
+Parameters: the current card array, the low index, and the high index
+*/
+async function partition(cards, low, high) {
+    let pivot = cards[high]; //Select pivot as the last card in the array
+    let i = low - 1;
+
+    //Swap cards that are less than the pivot
+    for(let j = low; j < high; j++) {
+        if(compareCards(cards[j], pivot) < 0) {
+            i++;
+            swapCardsVisually(cards[i], cards[j]);
+            await sleep(setTimeoutDelay);
+        }
+    }
+
+    //Swap pivot back into place
+    swapCardsVisually(cards[i + 1], cards[high]);
+    await sleep(setTimeoutDelay);
+
+    return i + 1;
+}
+
+/*
+Sorts the cards on the screen using quick sort
+Parameters: the current card array, the low index, and the high index
+*/
+async function quickSort(cards, low, high) {    
+    if(low < high) {
+        let pivot = await partition(cards, low, high);
+        await quickSort(cards, low, pivot - 1);
+        await quickSort(cards, pivot + 1, high);
+    }
 }
