@@ -53,7 +53,5 @@ function insertionSortButtonOnClick() {
 }
 
 async function quickSortButtonOnClick() {
-    document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
-    quickSort(cardArray, 0, cardArraySize - 1);
-    document.querySelector("#size_input").disabled = false; //Enable size slider after sorting
+    quickSort(cardArray);
 }

@@ -91,56 +91,58 @@ async function insertionSort(cards) {
 }
 
 /*
-Merge two arrays together in sorted order
-Parameters: two arrays
-*/
-async function merge(array1, array2) {
-
-}
-
-/*
-Sorts the cards on the screen using merge sort
-Parameters: the current card array
-*/
-async function mergeSort(cards) {
-    document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
-
-    
-    document.querySelector("#size_input").disabled = false;
-}
-
-/*
 Partitions the cards on the screen for quicksort
 Parameters: the current card array, the low index, and the high index
 */
 async function partition(cards, low, high) {
     let pivot = cards[high]; //Select pivot as the last card in the array
-    let i = low - 1;
+    let i = low - 1; //Index where the pivot element will be placed in the sorted array
 
     //Swap cards that are less than the pivot
     for(let j = low; j < high; j++) {
         if(compareCards(cards[j], pivot) < 0) {
             i++;
-            swapCardsVisually(cards[i], cards[j]);
-            await sleep(setTimeoutDelay);
+
+            if(i != j) {
+                swapCardsVisually(cards[i], cards[j]);
+                await sleep(setTimeoutDelay);
+            }
         }
     }
 
     //Swap pivot back into place
-    swapCardsVisually(cards[i + 1], cards[high]);
-    await sleep(setTimeoutDelay);
+    if(i + 1 != high) {
+        swapCardsVisually(cards[i + 1], cards[high]);
+        await sleep(setTimeoutDelay);
+    }
+    
 
     return i + 1;
 }
 
 /*
 Sorts the cards on the screen using quick sort
+Parameters: the current card array
+*/
+async function quickSort(cards) {
+    document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
+
+    await quickSortRecursive(cards, 0, cardArraySize - 1);
+
+    document.querySelector("#size_input").disabled = false;
+}
+
+/*
+Sorts the cards on the screen using quick sort
 Parameters: the current card array, the low index, and the high index
 */
-async function quickSort(cards, low, high) {    
+async function quickSortRecursive(cards, low, high) {    
     if(low < high) {
+        //Partition the array
         let pivot = await partition(cards, low, high);
-        await quickSort(cards, low, pivot - 1);
-        await quickSort(cards, pivot + 1, high);
+        
+        //Sort both halves of the array
+        await quickSortRecursive(cards, low, pivot - 1);
+        await quickSortRecursive(cards, pivot + 1, high);
     }
 }
