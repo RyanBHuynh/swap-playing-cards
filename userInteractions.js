@@ -52,6 +52,10 @@ function insertionSortButtonOnClick() {
     insertionSort(cardArray);
 }
 
-async function quickSortButtonOnClick() {
+function selectionSortButtonOnClick() {
+    selectionSort(cardArray);
+}
+
+function quickSortButtonOnClick() {
     quickSort(cardArray);
 }

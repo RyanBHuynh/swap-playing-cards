@@ -92,6 +92,32 @@ async function insertionSort(cards) {
 }
 
 /*
+Sorts the cards on the screen using selection sort
+Parameters: the current card array
+*/
+async function selectionSort(cards) {
+    document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
+
+    for(let i = 0; i < cardArraySize - 1; i++) {
+        let minIndex = i;
+        
+        //Find the smallest card in the array
+        for(let j = i + 1; j < cardArraySize; j++) {
+            if(compareCards(cards[j], cards[minIndex]) < 0)
+                minIndex = j;
+        }
+
+        //Swap the smallest card with the current card
+        if(minIndex != i) {
+            swapCardsVisually(cards[i], cards[minIndex]);
+            await sleep(setTimeoutDelay);
+        }
+    }
+
+    document.querySelector("#size_input").disabled = false;
+}
+
+/*
 Partitions the cards on the screen for quicksort
 Parameters:
 - cards: the current card array
