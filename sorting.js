@@ -47,7 +47,7 @@ Sorts the cards on the screen using bubble sort
 Parameters: the current card array
 */
 async function bubbleSort(cards) {
-    document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
+    disableSizeSlider();
 
     let everSwapped = false;
     for(let i = 0; i < cardArraySize - 1; i++) {
@@ -66,7 +66,7 @@ async function bubbleSort(cards) {
             break;
     }
 
-    document.querySelector("#size_input").disabled = false;
+    enableSizeSlider();
 }
 
 /*
@@ -74,7 +74,7 @@ Sorts the cards on the screen using insertion sort
 Parameters: the current card array
 */
 async function insertionSort(cards) {
-    document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
+    disableSizeSlider();
 
     for(let i = 0; i < cardArraySize - 1; i++) {
         let j = i + 1;
@@ -88,7 +88,7 @@ async function insertionSort(cards) {
         } 
     }
 
-    document.querySelector("#size_input").disabled = false;
+    enableSizeSlider();
 }
 
 /*
@@ -96,7 +96,7 @@ Sorts the cards on the screen using selection sort
 Parameters: the current card array
 */
 async function selectionSort(cards) {
-    document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
+    disableSizeSlider();
 
     for(let i = 0; i < cardArraySize - 1; i++) {
         let minIndex = i;
@@ -114,7 +114,7 @@ async function selectionSort(cards) {
         }
     }
 
-    document.querySelector("#size_input").disabled = false;
+    enableSizeSlider();
 }
 
 /*
@@ -154,9 +154,9 @@ Sorts the cards on the screen using quicksort
 Parameters: the current card array
 */
 async function quickSort(cards) {
-    document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
+    disableSizeSlider();
     await quickSortHelper(cards, 0, cardArraySize - 1);
-    document.querySelector("#size_input").disabled = false;
+    enableSizeSlider();
 }
 
 /*

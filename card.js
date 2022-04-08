@@ -144,6 +144,8 @@ Swaps two cards visually on the website
 Parameters: 
 - leftText: the left card to swap
 - rightText: the right card to swap
+
+await sleep(setTimeoutDelay) must be called after swapCardsVisually is called
 */
 async function swapCardsVisually(leftText, rightText) {
     if(checkCardQuery(leftText, rightText) == false)
@@ -243,6 +245,16 @@ function createCardHashMap(cards) {
     return cardMap;
 }
 
+//Functions to disable and enable the size slider
+
+function disableSizeSlider() {
+    document.querySelector("#size_input").disabled = true;
+}
+
+function enableSizeSlider() {
+    document.querySelector("#size_input").disabled = false;
+}
+
 /* 
 Visually shuffles the deck on the website
 Fisher-Yates Shuffle is implemented
@@ -252,7 +264,7 @@ async function shuffleDeckVisually() {
     let right = "";
     let indexToSwapWith = 0;
 
-    document.querySelector("#size_input").disabled = true; //Disable size slider during shuffling
+    disableSizeSlider();
     
     for(let i = cardArraySize - 1; i >= 0; i--) {
         indexToSwapWith = Math.floor(Math.random() * cardArraySize); //Choose a random index
@@ -279,5 +291,5 @@ async function shuffleDeckVisually() {
         }
     }
 
-    document.querySelector("#size_input").disabled = false;
+    enableSizeSlider();
 }
