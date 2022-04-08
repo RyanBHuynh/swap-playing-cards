@@ -1,5 +1,5 @@
 // Sort order: 2 through 10, J, Q, K, A, then Clubs, Spades, Diamonds, Hearts
-// Smaller/weaker cards will have a smaller value
+// Smaller cards have a smaller value
 
 /*
 Compares two cards and returns a value indicating which card has a greater value according to the cards' sorted order
@@ -26,6 +26,7 @@ function compareCards(c1,c2) {
     let c1HashRes = orderedCardHashMap.get(c1);
     let c2HashRes = orderedCardHashMap.get(c2);
 
+    //Check if the cards are in the hash map
     if(c1HashRes == undefined || c2HashRes == undefined)
         return false;
 
@@ -92,7 +93,10 @@ async function insertionSort(cards) {
 
 /*
 Partitions the cards on the screen for quicksort
-Parameters: the current card array, the low index, and the high index
+Parameters:
+- cards: the current card array
+- low: the low index of the current array
+- high: the high index of the current array
 */
 async function partition(cards, low, high) {
     let pivot = cards[high]; //Select pivot as the last card in the array
@@ -115,34 +119,34 @@ async function partition(cards, low, high) {
         swapCardsVisually(cards[i + 1], cards[high]);
         await sleep(setTimeoutDelay);
     }
-    
 
     return i + 1;
 }
 
 /*
-Sorts the cards on the screen using quick sort
+Sorts the cards on the screen using quicksort
 Parameters: the current card array
 */
 async function quickSort(cards) {
     document.querySelector("#size_input").disabled = true; //Disable size slider during sorting
-
-    await quickSortRecursive(cards, 0, cardArraySize - 1);
-
+    await quickSortHelper(cards, 0, cardArraySize - 1);
     document.querySelector("#size_input").disabled = false;
 }
 
 /*
-Sorts the cards on the screen using quick sort
-Parameters: the current card array, the low index, and the high index
+Recursive helper function for quicksort
+Parameters:
+- cards: the current card array
+- low: the low index of the current array
+- high: the high index of the current array
 */
-async function quickSortRecursive(cards, low, high) {    
+async function quickSortHelper(cards, low, high) {    
     if(low < high) {
         //Partition the array
         let pivot = await partition(cards, low, high);
         
         //Sort both halves of the array
-        await quickSortRecursive(cards, low, pivot - 1);
-        await quickSortRecursive(cards, pivot + 1, high);
+        await quickSortHelper(cards, low, pivot - 1);
+        await quickSortHelper(cards, pivot + 1, high);
     }
 }

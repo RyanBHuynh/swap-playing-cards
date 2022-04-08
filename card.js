@@ -141,8 +141,9 @@ function sleep(milliseconds) {
 
 /*
 Swaps two cards visually on the website
-Parameters: Gets two cards to swap from an array of size 2 called cardsToSwap
-cardsToSwap is an array with two elements: [leftCard,rightCard]
+Parameters: 
+- leftText: the left card to swap
+- rightText: the right card to swap
 */
 async function swapCardsVisually(leftText, rightText) {
     if(checkCardQuery(leftText, rightText) == false)
