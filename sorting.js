@@ -1,3 +1,6 @@
+//This JavaScript file is used to sort and compare the cards on the screen
+//Functions here are responsible for sorting the cards on the screen
+
 // Sort order: 2 through 10, J, Q, K, A, then Clubs, Spades, Diamonds, Hearts
 // Smaller cards have a smaller value
 

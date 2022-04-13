@@ -67,36 +67,31 @@
 
     <!-- sort algorithm pseudocode-->
 
-    <pre>
-        Bubble sort pseudocode:
-            function bubblesort(array) {
-                for(i = 0; i < array.length; i++) {
-                    for(j = 0; j < array.length - i - 1; j++) {
-                        if(array[j] > array[j + 1]) {
-                            swap(array[j], array[j + 1]);
+    <div class='center'>
+        <h3>
+            Bubble sort pseudocode:
+        </h3>
+        
+    </div>
+
+    <div class='pseudocode-container'>
+        <pre>
+                function bubblesort(array) {
+                    for(i = 0; i < array.length; i++) {
+                        for(j = 0; j < array.length - i - 1; j++) {
+                            if(array[j] > array[j + 1]) {
+                                swap(array[j], array[j + 1]);
+                            }
                         }
                     }
                 }
-            }
-    </pre>
-
-    <pre>
-        Insertion sort pseudocode:
-            function insertionSort(array) {
-                for(i = 0; i < array.length; i++) {
-                    j = i + 1;
-
-                    while(j > 0 and array[j - 1] > array[j]) {
-                        swap(array[j - 1], array[j]);
-                        j--;
-                    }
-                }
-            }
-    </pre>
+        </pre>
+    </div>
 
     <script type = "text/javascript" src="card.js"></script>
     <script type = "text/javascript" src="sorting.js"></script>
     <script type = "text/javascript" src="userInteractions.js"></script>
+    <script type = "text/javascript" src="displayPseudocode.js"></script>
     <script type = "text/javascript" src="index.js"></script>
     
 </body>
