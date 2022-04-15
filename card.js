@@ -151,9 +151,12 @@ async function swapCardsVisually(leftText, rightText) {
     disableSizeSlider();
     disableAllButtons();
 
-    if(checkCardQuery(leftText, rightText) == false)
+    if(checkCardQuery(leftText, rightText) == false) {
+        enableSizeSlider();
+        enableAllButtons();
         return;
-
+    }
+    
     //Get cards from HTML document
     const card1 = document.getElementById(leftText);
     const card2 = document.getElementById(rightText);
