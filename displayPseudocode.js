@@ -87,10 +87,6 @@ Parameters:
 function selectPseudocodeToDisplay(algorithm) {
     clearPseudocodeAndHeader();
 
-    //Create object to store pseudocode text
-    let pseudocodeHeaderDiv = document.getElementById('pseudocode-header-h3');
-    pseudocodeHeaderDiv.innerHTML = "";
-
     //Display pseudocode and header
     //Pseudocode must be displayed before the header, or else the header gets cleared
     switch(algorithm) {
