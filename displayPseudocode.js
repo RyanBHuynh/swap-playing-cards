@@ -73,6 +73,17 @@ function displayPseudocode(pseudocodeText) {
     pseudocodeContainerDiv.append(preElement);
 }
 
+function displayHeader(headerText) {
+    let pseudocodeHeaderDiv = document.getElementById('pseudocode-header-h3');
+    pseudocodeHeaderDiv.innerHTML = "";
+    pseudocodeHeaderDiv.innerText = headerText;
+}
+
+/*
+Displays the header and pseudocode for a selected sorting algorithm
+Parameters:
+ - algorithm: the name of the algorithm to display
+*/
 function selectPseudocodeToDisplay(algorithm) {
     clearPseudocodeAndHeader();
 
@@ -85,26 +96,26 @@ function selectPseudocodeToDisplay(algorithm) {
     switch(algorithm) {
         case "bubbleSort":
             displayPseudocode(bubbleSortText);
-            pseudocodeHeaderDiv.innerHTML = "Bubble Sort Pseudocode";
+            displayHeader("Bubble Sort Pseudocode");
             break;
 
         case "insertionSort":
             displayPseudocode(insertionSortText);
-            pseudocodeHeaderDiv.innerText = "Insertion Sort Pseudocode";
+            displayHeader("Insertion Sort Pseudocode");
             break;
 
         case "selectionSort":
             displayPseudocode(selectionSortText);
-            pseudocodeHeaderDiv.innerText = "Selection Sort Pseudocode";
+            displayHeader("Selection Sort Pseudocode");
             break;
 
         case "quickSort":
             displayPseudocode(quickSortText);
-            pseudocodeHeaderDiv.innerText = "Quick Sort Pseudocode";
+            displayHeader("Quick Sort Pseudocode");
             break;
 
         default:
             break;
-            
+
     }
 }
