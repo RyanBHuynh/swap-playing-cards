@@ -45,11 +45,10 @@ let quickSortText = `function quicksort(array, left, right) {
 /*
 Clears the pseudocode from the screen
 */
-function clearPseudocode() {
+function clearPseudocodeAndHeader() {
     //Clear header
-    let pseudocodeHeaderDiv = document.getElementById('pseudocode-header');
+    let pseudocodeHeaderDiv = document.getElementById('pseudocode-header-h3');
     pseudocodeHeaderDiv.innerHTML = "";
-    pseudocodeHeaderDiv.innerText = "";
 
     //Clear pseudocode
     let pseudocodeContainerDiv = document.getElementById('pseudocode-container');
@@ -63,43 +62,49 @@ Parameters:
  - pseudocodeText: the text of the pseudocode to be displayed
 */
 function displayPseudocode(pseudocodeText) {
+    clearPseudocodeAndHeader();
+
     let pseudocodeContainerDiv = document.getElementById('pseudocode-container');
     pseudocodeContainerDiv.innerHTML = "";
 
+    //Create pre element to store pseudocode text
     let preElement = document.createElement("pre");
     preElement.innerText = pseudocodeText;
-    
-    if(codeOnScreen) {
-        clearPseudocode();
-    }
-
     pseudocodeContainerDiv.append(preElement);
-    codeOnScreen = true;
 }
 
 function selectPseudocodeToDisplay(algorithm) {
-    let pseudocodeHeaderDiv = document.getElementById('pseudocode-header');
+    clearPseudocodeAndHeader();
+
+    //Create object to store pseudocode text
+    let pseudocodeHeaderDiv = document.getElementById('pseudocode-header-h3');
     pseudocodeHeaderDiv.innerHTML = "";
 
+    //Display pseudocode and header
+    //Pseudocode must be displayed before the header, or else the header gets cleared
     switch(algorithm) {
         case "bubbleSort":
-            pseudocodeHeaderDiv.innerText = "Bubble Sort Pseudocode";
             displayPseudocode(bubbleSortText);
+            pseudocodeHeaderDiv.innerHTML = "Bubble Sort Pseudocode";
             break;
+
         case "insertionSort":
-            pseudocodeHeaderDiv.innerText = "Insertion Sort Pseudocode";
             displayPseudocode(insertionSortText);
+            pseudocodeHeaderDiv.innerText = "Insertion Sort Pseudocode";
             break;
+
         case "selectionSort":
-            pseudocodeHeaderDiv.innerText = "Selection Sort Pseudocode";
             displayPseudocode(selectionSortText);
+            pseudocodeHeaderDiv.innerText = "Selection Sort Pseudocode";
             break;
+
         case "quickSort":
-            pseudocodeHeaderDiv.innerText = "Quick Sort Pseudocode";
             displayPseudocode(quickSortText);
+            pseudocodeHeaderDiv.innerText = "Quick Sort Pseudocode";
             break;
+
         default:
-            clearPseudocode();
             break;
+            
     }
 }
