@@ -148,6 +148,9 @@ Parameters:
 await sleep(setTimeoutDelay) must be called after swapCardsVisually is called
 */
 async function swapCardsVisually(leftText, rightText) {
+    disableSizeSlider();
+    disableAllButtons();
+
     if(checkCardQuery(leftText, rightText) == false)
         return;
 
@@ -188,6 +191,9 @@ async function swapCardsVisually(leftText, rightText) {
     cardHashMap.set(rightText, leftCardPos);
 
     displayCards(cardArray,cardArraySize); 
+
+    enableSizeSlider();
+    enableAllButtons();
 }
 
 /*
