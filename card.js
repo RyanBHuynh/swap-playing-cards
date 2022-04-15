@@ -255,6 +255,32 @@ function enableSizeSlider() {
     document.querySelector("#size_input").disabled = false;
 }
 
+/*
+Enables all onscreen buttons
+*/
+function enableAllButtons() {
+    document.querySelector("#swapButton").disabled = false;
+    document.querySelector("#shuffleButton").disabled = false;
+
+    document.querySelector("#bubbleSortButton").disabled = false;
+    document.querySelector("#insertionSortButton").disabled = false;
+    document.querySelector("#selectionSortButton").disabled = false;
+    document.querySelector("#quickSortButton").disabled = false; 
+}
+
+/*
+Disables all onscreen buttons
+*/
+function disableAllButtons() {
+    document.querySelector("#swapButton").disabled = true;
+    document.querySelector("#shuffleButton").disabled = true;
+
+    document.querySelector("#bubbleSortButton").disabled = true;
+    document.querySelector("#insertionSortButton").disabled = true;
+    document.querySelector("#selectionSortButton").disabled = true;
+    document.querySelector("#quickSortButton").disabled = true;
+}
+
 /* 
 Visually shuffles the deck on the website
 Fisher-Yates Shuffle is implemented
@@ -265,6 +291,7 @@ async function shuffleDeckVisually() {
     let indexToSwapWith = 0;
 
     disableSizeSlider();
+    disableAllButtons();
     
     for(let i = cardArraySize - 1; i >= 0; i--) {
         indexToSwapWith = Math.floor(Math.random() * cardArraySize); //Choose a random index
@@ -292,4 +319,5 @@ async function shuffleDeckVisually() {
     }
 
     enableSizeSlider();
+    enableAllButtons();
 }

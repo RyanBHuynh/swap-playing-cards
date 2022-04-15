@@ -52,6 +52,7 @@ Parameters: the current card array
 async function bubbleSort(cards) {
     selectPseudocodeToDisplay("bubbleSort");
     disableSizeSlider();
+    disableAllButtons();
 
     let everSwapped = false;
     for(let i = 0; i < cardArraySize - 1; i++) {
@@ -71,6 +72,7 @@ async function bubbleSort(cards) {
     }
 
     enableSizeSlider();
+    enableAllButtons();
 }
 
 /*
@@ -80,6 +82,7 @@ Parameters: the current card array
 async function insertionSort(cards) {
     selectPseudocodeToDisplay("insertionSort");
     disableSizeSlider();
+    disableAllButtons();
 
     for(let i = 0; i < cardArraySize - 1; i++) {
         let j = i + 1;
@@ -94,6 +97,7 @@ async function insertionSort(cards) {
     }
 
     enableSizeSlider();
+    enableAllButtons();
 }
 
 /*
@@ -103,6 +107,7 @@ Parameters: the current card array
 async function selectionSort(cards) {
     selectPseudocodeToDisplay("selectionSort");
     disableSizeSlider();
+    disableAllButtons();
 
     for(let i = 0; i < cardArraySize - 1; i++) {
         let minIndex = i;
@@ -121,6 +126,7 @@ async function selectionSort(cards) {
     }
 
     enableSizeSlider();
+    enableAllButtons();
 }
 
 /*
@@ -162,8 +168,12 @@ Parameters: the current card array
 async function quickSort(cards) {
     selectPseudocodeToDisplay("quickSort");
     disableSizeSlider();
+    disableAllButtons();
+
     await quickSortHelper(cards, 0, cardArraySize - 1);
+    
     enableSizeSlider();
+    enableAllButtons();
 }
 
 /*

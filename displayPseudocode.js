@@ -73,6 +73,11 @@ function displayPseudocode(pseudocodeText) {
     pseudocodeContainerDiv.append(preElement);
 }
 
+/*
+Displays the header for the current pseudocode
+Parameters:
+    - headerText: the text of the header to be displayed
+*/
 function displayHeader(headerText) {
     let pseudocodeHeaderDiv = document.getElementById('pseudocode-header-h3');
     pseudocodeHeaderDiv.innerHTML = "";
