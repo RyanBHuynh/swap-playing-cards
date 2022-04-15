@@ -50,6 +50,7 @@ Sorts the cards on the screen using bubble sort
 Parameters: the current card array
 */
 async function bubbleSort(cards) {
+    selectPseudocodeToDisplay("bubbleSort");
     disableSizeSlider();
 
     let everSwapped = false;
@@ -77,6 +78,7 @@ Sorts the cards on the screen using insertion sort
 Parameters: the current card array
 */
 async function insertionSort(cards) {
+    selectPseudocodeToDisplay("insertionSort");
     disableSizeSlider();
 
     for(let i = 0; i < cardArraySize - 1; i++) {
@@ -99,6 +101,7 @@ Sorts the cards on the screen using selection sort
 Parameters: the current card array
 */
 async function selectionSort(cards) {
+    selectPseudocodeToDisplay("selectionSort");
     disableSizeSlider();
 
     for(let i = 0; i < cardArraySize - 1; i++) {
@@ -157,6 +160,7 @@ Sorts the cards on the screen using quicksort
 Parameters: the current card array
 */
 async function quickSort(cards) {
+    selectPseudocodeToDisplay("quickSort");
     disableSizeSlider();
     await quickSortHelper(cards, 0, cardArraySize - 1);
     enableSizeSlider();
