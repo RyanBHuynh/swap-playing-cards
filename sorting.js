@@ -170,25 +170,33 @@ async function quickSortHelper(cards, low, high) {
 async function sortCards(cards, sortAlgorithm) {
     disableSizeSlider();
     disableAllButtons();
-
     selectPseudocodeToDisplay(sortAlgorithm);
+
+    let startTime = performance.now();
+
+    //Select the sorting algorithm
     switch(sortAlgorithm) {
         case "bubbleSort":
-            bubbleSort(cards);
+            await bubbleSort(cards);
             break;
         case "insertionSort":
-            insertionSort(cards);
+            await insertionSort(cards);
             break;
         case "selectionSort":
-            selectionSort(cards);
+            await selectionSort(cards);
             break;
         case "quickSort":
-            quickSort(cards);
+            await quickSort(cards);
             break;
         default:
             alert("Error: invalid sorting algorithm");
             break;
     }
+
+    //Get sorting algorithm runtime
+    let endTime = performance.now();
+    let timeTaken = endTime - startTime;
+    console.log("Time taken:" + timeTaken / 1000 + "s");
 
     enableSizeSlider();
     enableAllButtons();
