@@ -197,6 +197,10 @@ async function sortCards(cards, sortAlgorithm) {
     let endTime = performance.now();
     let timeTaken = endTime - startTime;
     console.log("Time taken:" + timeTaken / 1000 + "s");
+    
+    //Display the runtime
+    let timeTakenElement = document.getElementById("algorithm-runtime");
+    timeTakenElement.innerHTML = "Time taken: " + (timeTaken / 1000).toFixed(2) + "s";
 
     enableSizeSlider();
     enableAllButtons();
