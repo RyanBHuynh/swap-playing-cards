@@ -50,10 +50,6 @@ Sorts the cards on the screen using bubble sort
 Parameters: the current card array
 */
 async function bubbleSort(cards) {
-    selectPseudocodeToDisplay("bubbleSort");
-    disableSizeSlider();
-    disableAllButtons();
-
     let everSwapped = false;
     for(let i = 0; i < cardArraySize - 1; i++) {
         everSwapped = false; //Keeps track if there were any swaps during this pass
@@ -70,9 +66,6 @@ async function bubbleSort(cards) {
         if(everSwapped == false)
             break;
     }
-
-    enableSizeSlider();
-    enableAllButtons();
 }
 
 /*
@@ -80,10 +73,6 @@ Sorts the cards on the screen using insertion sort
 Parameters: the current card array
 */
 async function insertionSort(cards) {
-    selectPseudocodeToDisplay("insertionSort");
-    disableSizeSlider();
-    disableAllButtons();
-
     for(let i = 0; i < cardArraySize - 1; i++) {
         let j = i + 1;
 
@@ -95,9 +84,6 @@ async function insertionSort(cards) {
             j--; 
         } 
     }
-
-    enableSizeSlider();
-    enableAllButtons();
 }
 
 /*
@@ -105,10 +91,6 @@ Sorts the cards on the screen using selection sort
 Parameters: the current card array
 */
 async function selectionSort(cards) {
-    selectPseudocodeToDisplay("selectionSort");
-    disableSizeSlider();
-    disableAllButtons();
-
     for(let i = 0; i < cardArraySize - 1; i++) {
         let minIndex = i;
         
@@ -124,9 +106,6 @@ async function selectionSort(cards) {
             await sleep(setTimeoutDelay);
         }
     }
-
-    enableSizeSlider();
-    enableAllButtons();
 }
 
 /*
@@ -166,14 +145,7 @@ Sorts the cards on the screen using quicksort
 Parameters: the current card array
 */
 async function quickSort(cards) {
-    selectPseudocodeToDisplay("quickSort");
-    disableSizeSlider();
-    disableAllButtons();
-
     await quickSortHelper(cards, 0, cardArraySize - 1);
-    
-    enableSizeSlider();
-    enableAllButtons();
 }
 
 /*
@@ -192,4 +164,32 @@ async function quickSortHelper(cards, low, high) {
         await quickSortHelper(cards, low, pivot - 1);
         await quickSortHelper(cards, pivot + 1, high);
     }
+}
+
+//Pick a sorting algorithm and sort the playing cards
+async function sortCards(cards, sortAlgorithm) {
+    disableSizeSlider();
+    disableAllButtons();
+
+    selectPseudocodeToDisplay(sortAlgorithm);
+    switch(sortAlgorithm) {
+        case "bubbleSort":
+            bubbleSort(cards);
+            break;
+        case "insertionSort":
+            insertionSort(cards);
+            break;
+        case "selectionSort":
+            selectionSort(cards);
+            break;
+        case "quickSort":
+            quickSort(cards);
+            break;
+        default:
+            alert("Error: invalid sorting algorithm");
+            break;
+    }
+
+    enableSizeSlider();
+    enableAllButtons();
 }

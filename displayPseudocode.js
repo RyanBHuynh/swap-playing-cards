@@ -53,7 +53,6 @@ function partition(array, left, right) {
         }
     }
     swap(array[i], array[right]);
-
     return i;
 }`;
 

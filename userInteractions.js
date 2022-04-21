@@ -44,18 +44,18 @@ function shuffleButtonOnClick() {
 
 //Called when the user clicks the bubble sort button
 function bubbleSortButtonOnClick() {
-    bubbleSort(cardArray);
+    sortCards(cardArray, "bubbleSort");
 }
 
 //Called when the user clicks the insertion sort button
 function insertionSortButtonOnClick() {
-    insertionSort(cardArray);
+    sortCards(cardArray, "insertionSort");
 }
 
 function selectionSortButtonOnClick() {
-    selectionSort(cardArray);
+    sortCards(cardArray, "selectionSort");
 }
 
 function quickSortButtonOnClick() {
-    quickSort(cardArray);
+    sortCards(cardArray, "quickSort");
 }
