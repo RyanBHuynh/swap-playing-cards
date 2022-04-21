@@ -40,6 +40,21 @@ let quickSortText = `function quicksort(array, left, right) {
         quicksort(array, left, pivot - 1);
         quicksort(array, pivot + 1, right);
     }
+}
+
+//Partition the array around a pivot
+function partition(array, left, right) {
+    pivot = array[right];
+    i = left;
+    for(j = left; j < right; j++) {
+        if(array[j] <= pivot) {
+            swap(array[i], array[j]);
+            i++;
+        }
+    }
+    swap(array[i], array[right]);
+
+    return i;
 }`;
 
 /*
