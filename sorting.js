@@ -200,7 +200,7 @@ async function sortCards(cards, sortAlgorithm) {
     
     //Display the runtime
     let timeTakenElement = document.getElementById("algorithm-runtime");
-    timeTakenElement.innerHTML = "Time taken: " + (timeTaken / 1000).toFixed(2) + "s";
+    timeTakenElement.innerHTML = "Time taken: " + (timeTaken / 1000).toFixed(3) + "s";
 
     enableSizeSlider();
     enableAllButtons();
